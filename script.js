@@ -48,3 +48,11 @@ document.getElementById("offer-image").src =
     images[randomNumber];
 
 console.log(selectedOffer);
+
+
+let menuBtn = document.getElementById("menu-btn");
+let navbar = document.getElementById("navbar");
+
+menuBtn.addEventListener("click", function() {
+    navbar.classList.toggle("active");
+});
