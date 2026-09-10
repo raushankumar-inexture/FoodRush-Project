@@ -32,4 +32,15 @@ let randomNumber = Math.floor(Math.random() * offers.length);
 
 let selectedOffer = offers[randomNumber];
 
+document.getElementById("offer-discount").innerHTML =
+    "Get " + selectedOffer.discount + " OFF<br>on " + selectedOffer.food;
+
+document.getElementById("offer-code").textContent =
+    selectedOffer.code;
+
 console.log(selectedOffer);
+
+
+
+
+
