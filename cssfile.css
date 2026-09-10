@@ -1,0 +1,808 @@
+/* =========================
+   Global Styles
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background-color: #ffffff;
+    color: #222222;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section {
+    padding: 70px 0;
+}
+
+
+/* 
+   Header
+*/
+
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.nav {
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #ff5a36;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.navbar a {
+    font-size: 15px;
+    font-weight: bold;
+
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #ff5a36;
+}
+
+.login-btn {
+    padding: 10px 20px;
+
+    border: 1px solid #ff5a36;
+    border-radius: 6px;
+
+    color: #ff5a36;
+    font-weight: bold;
+
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #ff5a36;
+    color: #ffffff;
+}
+
+
+/* =========================
+   Hero Section
+========================= */
+
+.hero {
+    padding: 80px 0;
+
+    background-color: #fff7f3;
+}
+
+.hero-content {
+    min-height: 450px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 60px;
+}
+
+.hero-text {
+    width: 60%;
+}
+
+.hero-label {
+    margin-bottom: 15px;
+
+    color: #ff5a36;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    margin-bottom: 20px;
+
+    font-size: 55px;
+    line-height: 1.1;
+}
+
+.hero h1 span {
+    display: block;
+
+    color: #ff5a36;
+}
+
+.hero-description {
+    max-width: 520px;
+
+    margin-bottom: 25px;
+
+    color: #666666;
+
+    font-size: 17px;
+}
+
+.search-box {
+    max-width: 500px;
+
+    display: flex;
+
+    margin-bottom: 20px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+
+    overflow: hidden;
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+    outline: none;
+}
+
+.search-box button {
+    padding: 14px 22px;
+
+    border: none;
+
+    background-color: #ff5a36;
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition: background-color 0.3s ease;
+}
+
+.search-box button:hover {
+    background-color: #e94d2c;
+}
+
+.primary-btn {
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    background-color: #ff5a36;
+    color: #ffffff;
+
+    border-radius: 6px;
+
+    font-weight: bold;
+
+    transition: background-color 0.3s ease;
+}
+
+.primary-btn:hover {
+    background-color: #e94d2c;
+}
+
+.hero-image {
+    width: 40%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.food-circle {
+    width: 300px;
+    height: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: #ffffff;
+
+    font-size: 140px;
+
+    box-shadow: 0 10px 30px #dddddd;
+}
+
+
+/* =========================
+   Section Heading
+========================= */
+
+.section-heading {
+    margin-bottom: 35px;
+}
+
+.section-heading p,
+.section-label {
+    margin-bottom: 8px;
+
+    color: #ff5a36;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.section-heading h2 {
+    font-size: 35px;
+    line-height: 1.2;
+}
+
+
+/* =========================
+   Popular Categories
+========================= */
+
+.category-grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 20px;
+}
+
+
+/* Individual Category Card */
+
+.category-card {
+    /*
+       3 cards per row on desktop
+    */
+    flex: 0 0 calc((100% - 40px) / 3);
+
+    padding: 12px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Category Image */
+
+.category-card img {
+    width: 100%;
+    height: 180px;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 7px;
+}
+
+
+/* Category Title */
+
+.category-card h3 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+
+    font-size: 18px;
+}
+
+
+/* Category Items */
+
+.category-card p {
+    margin-bottom: 5px;
+
+    color: #777777;
+
+    font-size: 14px;
+}
+
+
+/* Category Hover */
+
+.category-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 8px 20px #dddddd;
+}
+
+
+/* =========================
+   Restaurants
+========================= */
+
+.restaurants {
+    background-color: #f8f8f8;
+}
+
+.restaurant-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.restaurant-card {
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+
+    transition: box-shadow 0.3s ease;
+}
+
+.restaurant-card:hover {
+    box-shadow: 0 5px 15px #dddddd;
+}
+
+.restaurant-image {
+    height: 200px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #fff0eb;
+
+    font-size: 90px;
+}
+
+.restaurant-content {
+    padding: 20px;
+}
+
+.rating {
+    color: #ff5a36;
+
+    font-weight: bold;
+}
+
+.restaurant-content h3 {
+    margin: 10px 0 5px;
+}
+
+.restaurant-content > p {
+    color: #777777;
+
+    font-size: 14px;
+}
+
+.restaurant-info {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 15px;
+    padding-top: 15px;
+
+    border-top: 1px solid #dddddd;
+
+    color: #555555;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   Offers
+========================= */
+
+.offer-banner {
+    padding: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #ff5a36;
+    color: #ffffff;
+
+    border-radius: 10px;
+}
+
+.offer-label {
+    margin-bottom: 10px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.offer-banner h2 {
+    margin: 10px 0 15px;
+
+    font-size: 38px;
+    line-height: 1.2;
+}
+
+.offer-banner p {
+    margin-bottom: 20px;
+}
+
+.offer-banner .primary-btn {
+    background-color: #ffffff;
+    color: #ff5a36;
+}
+
+.offer-banner .primary-btn:hover {
+    background-color: #eeeeee;
+}
+
+.offer-icon {
+    font-size: 120px;
+}
+
+
+/* =========================
+   About
+========================= */
+
+.about-content {
+    display: flex;
+    align-items: center;
+
+    gap: 60px;
+}
+
+.about-heading {
+    width: 50%;
+}
+
+.about-heading h2 {
+    max-width: 500px;
+
+    font-size: 40px;
+    line-height: 1.2;
+}
+
+.about-text {
+    width: 50%;
+}
+
+.about-text p {
+    color: #666666;
+
+    font-size: 17px;
+}
+
+
+/* =========================
+   Footer
+========================= */
+
+.footer {
+    padding-top: 30px;
+
+    background-color: #222222;
+    color: #ffffff;
+}
+
+.footer-content {
+    min-height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer p {
+    margin-top: 8px;
+
+    color: #aaaaaa;
+}
+
+.footer-links {
+    display: flex;
+
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #cccccc;
+
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ff5a36;
+}
+
+.copyright {
+    padding: 20px;
+
+    text-align: center;
+
+    border-top: 1px solid #444444;
+}
+
+
+/* =========================
+   Responsive Design
+========================= */
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+
+    .container {
+        width: 92%;
+    }
+
+
+    /* Header */
+
+    .nav {
+        flex-wrap: wrap;
+
+        padding: 15px 0;
+    }
+
+
+    /* Hero */
+
+    .hero-content {
+        gap: 40px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+
+    /* Categories */
+
+    .category-card {
+        flex: 0 0 calc((100% - 20px) / 2);
+    }
+
+
+    /* Restaurants */
+
+    .restaurant-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 700px) {
+
+    .section {
+        padding: 55px 0;
+    }
+
+
+    /* Header */
+
+    .nav {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .navbar {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+
+
+    /* Hero */
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero-content {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .hero-text,
+    .hero-image {
+        width: 100%;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .search-box {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+
+    /* Categories */
+
+    .category-grid {
+        gap: 20px;
+    }
+
+    .category-card {
+        flex: 0 0 100%;
+    }
+
+
+    /* Restaurants */
+
+    .restaurant-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* About */
+
+    .about-content {
+        flex-direction: column;
+
+        gap: 30px;
+
+        text-align: center;
+    }
+
+    .about-heading,
+    .about-text {
+        width: 100%;
+    }
+
+    .about-heading h2 {
+        margin: auto;
+
+        font-size: 34px;
+    }
+
+
+    /* Offers */
+
+    .offer-banner {
+        padding: 30px 20px;
+
+        text-align: center;
+    }
+
+}
+
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media (max-width: 500px) {
+
+    .container {
+        width: 92%;
+    }
+
+
+    /* Hero */
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .food-circle {
+        width: 220px;
+        height: 220px;
+
+        font-size: 100px;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box input {
+        padding: 13px;
+    }
+
+    .search-box button {
+        width: 100%;
+    }
+
+
+    /* Section Heading */
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+
+    /* Category */
+
+    .category-card img {
+        height: 190px;
+    }
+
+
+    /* Offers */
+
+    .offer-banner h2 {
+        font-size: 30px;
+    }
+
+    .offer-icon {
+        display: none;
+    }
+
+
+    /* Footer */
+
+    .footer-content {
+        padding: 30px 0;
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+}
