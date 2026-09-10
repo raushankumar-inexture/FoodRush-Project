@@ -1,4 +1,3 @@
-
 let offers = [
     {
         food: "Pizza",
@@ -27,6 +26,13 @@ let offers = [
     }
 ];
 
+let images = [
+    "images/pizza.jpg",
+    "images/noodles.jpg",
+    "images/dessert.jpg",
+    "images/mexican.jpg",
+    "images/biryani.jpg"
+];
 
 let randomNumber = Math.floor(Math.random() * offers.length);
 
@@ -38,9 +44,7 @@ document.getElementById("offer-discount").innerHTML =
 document.getElementById("offer-code").textContent =
     selectedOffer.code;
 
+document.getElementById("offer-image").src =
+    images[randomNumber];
+
 console.log(selectedOffer);
-
-
-
-
-
