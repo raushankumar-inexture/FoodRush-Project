@@ -141,7 +141,7 @@ function placeOrder() {
 }
 
 function sendOrderEmail(orderId, deliveryTime, total, itemsList, userEmail) {
-    // EmailJS configuration
+    // EmailJS configuration - make sure parameter names match your EmailJS template
     let emailData = {
         to_email: userEmail,
         order_id: orderId,
@@ -152,24 +152,24 @@ function sendOrderEmail(orderId, deliveryTime, total, itemsList, userEmail) {
     };
     
     // Log to console for testing
+    console.log("=== EmailJS Debug ===");
     console.log("Sending email to:", userEmail);
     console.log("Order details:", emailData);
+    console.log("EmailJS Config:", EMAILJS_CONFIG);
+    console.log("EmailJS loaded:", typeof emailjs);
     
     // Check if EmailJS is loaded
-    if (typeof emailjs === 'undefined' && typeof window.emailjs === 'undefined') {
+    if (typeof emailjs === 'undefined') {
         console.error("EmailJS SDK not loaded");
         alert("Email service not available. Please refresh the page.");
         return;
     }
     
-    // Use the correct EmailJS reference
-    const emailjsLib = typeof emailjs !== 'undefined' ? emailjs : window.emailjs;
-    
     // Initialize EmailJS with your Public Key
-    emailjsLib.init(EMAILJS_CONFIG.publicKey);
+    emailjs.init(EMAILJS_CONFIG.publicKey);
     
     // Send email using EmailJS
-    emailjsLib.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, emailData)
+    emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, emailData)
         .then(function(response) {
             console.log("Email sent successfully:", response);
             alert("Confirmation email sent to " + userEmail);
