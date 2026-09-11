@@ -1,6 +1,13 @@
 // Cart functionality - persists across pages using localStorage
 let cart = [];
 
+// EmailJS Configuration - SIGN UP at emailjs.com and replace these values
+const EMAILJS_CONFIG = {
+    serviceID: "service_et0ggzk",
+    templateID: "template_i4zx1z8",
+    publicKey: "6b6ZPt7N-KzQRSAnY"
+};
+
 // Load cart from localStorage
 function loadCart() {
     const savedCart = localStorage.getItem("foodrushCart");
@@ -76,8 +83,12 @@ function showCart() {
 
 function clearSuccessMessage() {
     let successMessage = document.getElementById("success-message");
+    let orderDetails = document.getElementById("order-details");
     if (successMessage) {
         successMessage.innerText = "";
+    }
+    if (orderDetails) {
+        orderDetails.style.display = "none";
     }
 }
 
@@ -87,14 +98,78 @@ function placeOrder() {
         return;
     }
 
+    // Generate Order ID
+    let orderId = "FR" + Date.now().toString().slice(-8) + Math.floor(Math.random() * 100);
+    
+    // Calculate delivery time
+    let now = new Date();
+    let deliveryTime = new Date(now.getTime() + 30 * 60000 + Math.random() * 15 * 60000);
+    let deliveryTimeStr = deliveryTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    
+    // Calculate total
+    let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    
+    let loggedInUser = localStorage.getItem("loggedInUser");
+    let userEmail = loggedInUser ? JSON.parse(loggedInUser).email : "guest@example.com";
+    
+    // Build order items list
+    let itemsList = cart.map(item => `${item.name} (x${item.quantity})`).join(", ");
+    
+    // Display order details on page
     let successMessage = document.getElementById("success-message");
+    let orderDetails = document.getElementById("order-details");
+    
     if (successMessage) {
-        successMessage.innerText = "Order placed successfully!";
+        successMessage.innerHTML = `Order placed successfully!<br>
+            Order ID: <strong>${orderId}</strong><br>
+            Estimated Delivery: <strong>${deliveryTimeStr}</strong>`;
     }
-
+    
+    if (orderDetails) {
+        orderDetails.style.display = "block";
+        orderDetails.innerHTML = `
+            <h3 style="color: #ff5a36; margin-top: 0;">Order Confirmation</h3>
+            <p><strong>Order ID:</strong> ${orderId}</p>
+            <p><strong>Estimated Delivery:</strong> ${deliveryTimeStr}</p>
+            <p><strong>Ordered Items:</strong> ${itemsList}</p>
+            <p><strong>Total Amount:</strong> ₹${total}</p>
+        `;
+    }
+    
+    // Send email using EmailJS
+    sendOrderEmail(orderId, deliveryTimeStr, total, itemsList, userEmail);
+    
+    // Clear cart
     cart = [];
     saveCart();
     showCart();
+}
+
+function sendOrderEmail(orderId, deliveryTime, total, itemsList, userEmail) {
+    // EmailJS configuration
+    let emailData = {
+        to_email: userEmail,
+        order_id: orderId,
+        delivery_time: deliveryTime,
+        total_amount: total,
+        items_list: itemsList,
+        message: "Your FoodRush order has been placed successfully."
+    };
+    
+    // Log to console for testing
+    console.log("Sending email to:", userEmail);
+    console.log("Order details:", emailData);
+    
+    // Send email using EmailJS
+    emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, emailData, EMAILJS_CONFIG.publicKey)
+        .then(function(response) {
+            console.log("Email sent successfully:", response);
+            alert("Confirmation email sent to " + userEmail);
+        }, function(error) {
+            console.log("Email failed:", error);
+            alert("Order placed but email could not be sent. Please check your email settings.");
+        });
 }
 
 // Initialize cart on page load
