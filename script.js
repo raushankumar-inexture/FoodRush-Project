@@ -1,3 +1,4 @@
+// Offer data
 let offers = [
     {
         food: "Pizza",
@@ -50,9 +51,48 @@ document.getElementById("offer-image").src =
 console.log(selectedOffer);
 
 
+// Hamburger menu
 let menuBtn = document.getElementById("menu-btn");
 let navbar = document.getElementById("navbar");
 
 menuBtn.addEventListener("click", function() {
     navbar.classList.toggle("active");
+});
+
+
+// User authentication state management
+function checkAuthState() {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    const loginBtn = document.getElementById("loginBtn");
+    const userInfo = document.getElementById("userInfo");
+    const userName = document.getElementById("userName");
+
+    if (loggedInUser) {
+        // User is logged in - show user info, hide login button
+        const user = JSON.parse(loggedInUser);
+        loginBtn.style.display = "none";
+        userName.textContent = user.name;
+        userInfo.style.display = "flex";
+    } else {
+        // User is not logged in - show login button, hide user info
+        loginBtn.style.display = "block";
+        userInfo.style.display = "none";
+    }
+}
+
+// Logout function
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    checkAuthState();
+}
+
+// Initialize auth state when page loads
+document.addEventListener("DOMContentLoaded", function() {
+    checkAuthState();
+
+    // Add logout event listener if user info element exists
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", logout);
+    }
 });
