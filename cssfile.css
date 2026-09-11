@@ -993,22 +993,41 @@ input {
 .cart-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 15px 0;
     border-bottom: 1px solid #eeeeee;
+    transition: background-color 0.2s ease;
 }
 
-.cart-item:last-child {
-    border-bottom: none;
+.cart-item:hover {
+    background-color: #f9f9f9;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 6px;
 }
 
 .cart-item span:first-child {
     font-weight: bold;
+    color: #333333;
+    font-size: 16px;
 }
 
 .cart-item span:last-child {
     color: #666666;
+    font-size: 15px;
+    text-align: right;
 }
 
+#cart-items {
+    min-height: 200px;
+}
+
+#cart-items p {
+    text-align: center;
+    color: #999;
+    padding: 40px 0;
+    font-size: 16px;
+}
 
 /* 
    Footer Responsive
