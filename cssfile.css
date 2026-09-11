@@ -382,14 +382,37 @@ input {
 }
 
 .restaurant-grid {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
+    display: flex;
+    overflow-x: auto;
     gap: 25px;
+    padding: 10px 0;
+    
+    /* Custom scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: #ff5a36 #f1f1f1;
+}
+
+/* WebKit browsers */
+.restaurant-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.restaurant-grid::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.restaurant-grid::-webkit-scrollbar-thumb {
+    background: #ff5a36;
+    border-radius: 10px;
+}
+
+.restaurant-grid::-webkit-scrollbar-thumb:hover {
+    background: #e94d2c;
 }
 
 .restaurant-card {
+    flex: 0 0 calc((100% - 50px) / 3);
     overflow: hidden;
 
     background-color: #ffffff;
@@ -837,6 +860,25 @@ input {
         display: none;
     }
 
+}
+
+/* Responsive for Restaurant Grid */
+@media (max-width: 1024px) {
+    .restaurant-card {
+        flex: 0 0 calc((100% - 25px) / 2);
+    }
+}
+
+@media (max-width: 768px) {
+    .restaurant-card {
+        flex: 0 0 calc((100% - 25px) / 2);
+    }
+}
+
+@media (max-width: 500px) {
+    .restaurant-card {
+        flex: 0 0 100%;
+    }
 }
 
 
