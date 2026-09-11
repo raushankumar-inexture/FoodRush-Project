@@ -4,16 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>FoodRush - Shopping Cart</title>
 
     <link rel="stylesheet" href="cssfile.css">
 </head>
 
 
-<body style="display: flex; flex-direction: min-height: 100vh; margin: 0; padding: 0; background-color: #ffffff;">
+<body style="
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+">
+
 
     <!-- Header -->
     <header class="header" style="width: 100%;">
+
         <div class="container nav">
 
             <a href="FoodRush.html" class="logo">
@@ -21,53 +31,178 @@
             </a>
 
             <nav class="navbar">
+
                 <a href="FoodRush.html">Home</a>
+
                 <a href="categories.html">Categories</a>
+
                 <a href="FoodRush.html#restaurants">Restaurants</a>
+
                 <a href="FoodRush.html#offers">Offers</a>
+
                 <a href="FoodRush.html#about">About</a>
+
             </nav>
 
             <a href="cart.html" class="login-btn">
-                Cart <span id="cart-count" style="margin-left: 5px;">0</span>
+                Cart <span id="cart-count">0</span>
             </a>
 
         </div>
+
     </header>
 
 
+
     <!-- Cart Page -->
-    <main style="flex: 1; width: 100%;">
-        <section class="cart-page section" style="padding: 50px 0;">
+    <main style="
+        flex: 1;
+        width: 100%;
+        box-sizing: border-box;
+    ">
 
-            <div class="container" style="max-width: 1200px; padding: 0 20px;">
 
-                <div class="section-heading" style="margin-bottom: 40px;">
-                    <p style="color: #ff5a36; font-size: 14px; font-weight: bold; margin-bottom: 10px; letter-spacing: 1px;">YOUR ORDER</p>
-                    <h1 style="font-size: 42px; line-height: 1.2; font-weight: bold;">Shopping Cart</h1>
+        <section class="cart-page" style="
+            width: 100%;
+            padding: 50px 20px;
+            box-sizing: border-box;
+        ">
+
+
+            <div style="
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                box-sizing: border-box;
+            ">
+
+
+                <!-- Heading -->
+                <div style="margin-bottom: 40px;">
+
+                    <p style="
+                        color: #ff5a36;
+                        font-size: 14px;
+                        font-weight: bold;
+                        margin-bottom: 10px;
+                        letter-spacing: 1px;
+                    ">
+                        YOUR ORDER
+                    </p>
+
+                    <h1 style="
+                        font-size: 42px;
+                        line-height: 1.2;
+                        font-weight: bold;
+                        margin: 0;
+                    ">
+                        Shopping Cart
+                    </h1>
+
                 </div>
 
 
-                <div class="cart-box" style="background-color: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);">
 
-                    <div id="cart-items" style="min-height: 250px;">
-                        <p style="text-align: center; color: #999; padding: 50px 0; font-size: 18px;">Your cart is empty.</p>
+                <!-- Cart Box -->
+                <div style="
+                    width: 100%;
+                    box-sizing: border-box;
+                    background-color: #ffffff;
+                    padding: 40px;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                ">
+
+
+                    <!-- Cart Items -->
+                    <div id="cart-items" style="
+                        min-height: 250px;
+                        width: 100%;
+                    ">
+
+                        <p style="
+                            text-align: center;
+                            color: #999;
+                            padding: 50px 0;
+                            font-size: 18px;
+                        ">
+                            Your cart is empty.
+                        </p>
+
                     </div>
 
 
-                    <div style="margin-top: 40px; padding-top: 30px; border-top: 3px solid #f0f0f0;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-                            <h3 style="font-size: 20px; color: #333; margin: 0;">Total Amount:</h3>
-                            <h3 class="cart-total" style="font-size: 32px; margin: 0; color: #ff5a36; font-weight: bold;">
-                                ₹<span id="cart-total" style="font-weight: bold;">0</span>
+
+                    <!-- Total -->
+                    <div style="
+                        margin-top: 40px;
+                        padding-top: 30px;
+                        border-top: 3px solid #f0f0f0;
+                    ">
+
+
+                        <div style="
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 30px;
+                        ">
+
+                            <h3 style="
+                                font-size: 20px;
+                                color: #333;
+                                margin: 0;
+                            ">
+                                Total Amount:
                             </h3>
+
+
+                            <h3 style="
+                                font-size: 32px;
+                                margin: 0;
+                                color: #ff5a36;
+                                font-weight: bold;
+                            ">
+                                ₹<span id="cart-total">0</span>
+                            </h3>
+
                         </div>
 
-                        <button class="order-btn" onclick="placeOrder()" style="display: block; width: 100%; max-width: 450px; margin: 0 auto; background-color: #ff5a36; color: white; border: none; padding: 16px 30px; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: bold; transition: background-color 0.3s ease; box-shadow: 0 2px 8px rgba(255, 90, 54, 0.3);">
+
+
+                        <!-- Place Order -->
+                        <button
+                            class="order-btn"
+                            onclick="placeOrder()"
+                            style="
+                                display: block;
+                                width: 100%;
+                                max-width: 450px;
+                                margin: 0 auto;
+                                background-color: #ff5a36;
+                                color: white;
+                                border: none;
+                                padding: 16px 30px;
+                                border-radius: 8px;
+                                cursor: pointer;
+                                font-size: 18px;
+                                font-weight: bold;
+                            "
+                        >
                             Place Order
                         </button>
 
-                        <p id="success-message" style="text-align: center; color: #28a745; font-weight: bold; margin-top: 20px; font-size: 18px;"></p>
+
+
+                        <!-- Success Message -->
+                        <p id="success-message" style="
+                            text-align: center;
+                            color: #28a745;
+                            font-weight: bold;
+                            margin-top: 20px;
+                            font-size: 18px;
+                        "></p>
+
 
                     </div>
 
@@ -80,41 +215,111 @@
     </main>
 
 
-    <!-- Footer -->
-    <footer class="footer" style="width: 100%; background-color: #222222; color: #ffffff; padding: 30px 0 20px 0; margin-top: auto;">
-        <div class="container footer-content" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px;">
 
-            <div style="flex: 1; min-width: 250px;">
-                <a href="FoodRush.html" class="logo" style="font-size: 26px; font-weight: bold; color: #ffffff; margin-bottom: 15px; display: inline-block;">
+    <!-- Footer -->
+    <footer class="footer" style="
+        width: 100%;
+        background-color: #222222;
+        color: #ffffff;
+        padding: 30px 0 20px 0;
+        margin-top: auto;
+    ">
+
+
+        <div style="
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        ">
+
+
+            <!-- Footer Brand -->
+            <div style="
+                flex: 1;
+                min-width: 250px;
+            ">
+
+                <a
+                    href="FoodRush.html"
+                    class="logo"
+                    style="
+                        font-size: 26px;
+                        font-weight: bold;
+                        color: #ffffff;
+                        margin-bottom: 15px;
+                        display: inline-block;
+                    "
+                >
                     Food<span style="color: #ff5a36;">Rush</span>
                 </a>
 
-                <p style="color: #cccccc; margin: 0; line-height: 1.6;">
+                <p style="
+                    color: #cccccc;
+                    margin: 0;
+                    line-height: 1.6;
+                ">
                     Delicious food delivered fast.
                 </p>
+
             </div>
 
 
-            <div class="footer-links" style="flex: 1; min-width: 250px; display: flex; flex-wrap: wrap; gap: 15px;">
-                <a href="FoodRush.html" style="color: #ffffff; text-decoration: none; font-weight: bold;">Home</a>
-                <a href="categories.html" style="color: #ffffff; text-decoration: none; font-weight: bold;">Categories</a>
-                <a href="FoodRush.html#restaurants" style="color: #ffffff; text-decoration: none; font-weight: bold;">Restaurants</a>
-                <a href="FoodRush.html#offers" style="color: #ffffff; text-decoration: none; font-weight: bold;">Offers</a>
-                <a href="FoodRush.html#about" style="color: #ffffff; text-decoration: none; font-weight: bold;">About</a>
+
+            <!-- Footer Links -->
+            <div style="
+                flex: 1;
+                min-width: 250px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+            ">
+
+                <a href="FoodRush.html">Home</a>
+
+                <a href="categories.html">Categories</a>
+
+                <a href="FoodRush.html#restaurants">Restaurants</a>
+
+                <a href="FoodRush.html#offers">Offers</a>
+
+                <a href="FoodRush.html#about">About</a>
+
             </div>
+
 
         </div>
 
 
-        <div class="copyright" style="text-align: center; padding-top: 20px; border-top: 1px solid #333333; margin-top: 20px;">
-            <p style="color: #888888; margin: 0; font-size: 14px;">
+
+        <!-- Copyright -->
+        <div style="
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333333;
+            margin-top: 20px;
+        ">
+
+            <p style="
+                color: #888888;
+                margin: 0;
+                font-size: 14px;
+            ">
                 © 2026 FoodRush. All rights reserved.
             </p>
+
         </div>
 
     </footer>
 
 
+
+    <!-- Cart JavaScript -->
     <script src="cart.js"></script>
 
 </body>
