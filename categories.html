@@ -24,25 +24,15 @@
             <nav class="navbar">
 
                 <a href="FoodRush.html">Home</a>
-
                 <a href="categories.html">Categories</a>
-
-                <a href="FoodRush.html#restaurants">
-                    Restaurants
-                </a>
-
-                <a href="FoodRush.html#offers">
-                    Offers
-                </a>
-
-                <a href="FoodRush.html#about">
-                    About
-                </a>
+                <a href="FoodRush.html#restaurants">Restaurants</a>
+                <a href="FoodRush.html#offers">Offers</a>
+                <a href="FoodRush.html#about">About</a>
 
             </nav>
 
-            <a href="#" class="login-btn">
-                Login
+            <a href="#cart" class="login-btn">
+                Cart
             </a>
 
         </div>
@@ -62,30 +52,28 @@
 
                     <p>EXPLORE</p>
 
-                    <h1> Categories</h1>
+                    <h1>Categories</h1>
 
                 </div>
 
 
-                <!-- Category Cards -->
+                <!-- Food Items -->
                 <div class="category-grid">
-
 
                     <!-- Pizza -->
                     <div class="category-card">
 
                         <div class="category-icon">
-
-                            <img
-                                src="images/pizza.jpg"
-                                alt="Pizza"
-                            >
-
+                            <img src="images/pizza.jpg" alt="Pizza">
                         </div>
 
                         <h3>Pizza</h3>
 
-                        <p>25+ Items</p>
+                        <p>₹250</p>
+
+                        <button onclick="addToCart('Pizza', 250)">
+                            Add to Cart
+                        </button>
 
                     </div>
 
@@ -94,17 +82,16 @@
                     <div class="category-card">
 
                         <div class="category-icon">
-
-                            <img
-                                src="images/burger.jpg"
-                                alt="Burger"
-                            >
-
+                            <img src="images/burger.jpg" alt="Burger">
                         </div>
 
-                        <h3>Burgers</h3>
+                        <h3>Burger</h3>
 
-                        <p>30+ Items</p>
+                        <p>₹150</p>
+
+                        <button onclick="addToCart('Burger', 150)">
+                            Add to Cart
+                        </button>
 
                     </div>
 
@@ -113,17 +100,16 @@
                     <div class="category-card">
 
                         <div class="category-icon">
-
-                            <img
-                                src=" images/noodles.jpg"
-                                alt="Noodles"
-                            >
-
+                            <img src="images/noodles.jpg" alt="Noodles">
                         </div>
 
                         <h3>Noodles</h3>
 
-                        <p>20+ Items</p>
+                        <p>₹180</p>
+
+                        <button onclick="addToCart('Noodles', 180)">
+                            Add to Cart
+                        </button>
 
                     </div>
 
@@ -132,17 +118,16 @@
                     <div class="category-card">
 
                         <div class="category-icon">
-
-                            <img
-                                src="images/biryani.jpg"
-                                alt="Biryani"
-                            >
-
+                            <img src="images/biryani.jpg" alt="Biryani">
                         </div>
 
                         <h3>Biryani</h3>
 
-                        <p>15+ Items</p>
+                        <p>₹220</p>
+
+                        <button onclick="addToCart('Biryani', 220)">
+                            Add to Cart
+                        </button>
 
                     </div>
 
@@ -151,17 +136,16 @@
                     <div class="category-card">
 
                         <div class="category-icon">
-
-                            <img
-                                src="images/mexican.jpg"
-                                alt="Mexican Food"
-                            >
-
+                            <img src="images/mexican.jpg" alt="Mexican Food">
                         </div>
 
                         <h3>Mexican</h3>
 
-                        <p>18+ Items</p>
+                        <p>₹200</p>
+
+                        <button onclick="addToCart('Mexican Food', 200)">
+                            Add to Cart
+                        </button>
 
                     </div>
 
@@ -170,20 +154,55 @@
                     <div class="category-card">
 
                         <div class="category-icon">
-
-                            <img
-                                src="images/dessert.jpg"
-                                alt="Desserts"
-                            >
-
+                            <img src="images/dessert.jpg" alt="Desserts">
                         </div>
 
-                        <h3>Desserts</h3>
+                        <h3>Dessert</h3>
 
-                        <p>20+ Items</p>
+                        <p>₹120</p>
+
+                        <button onclick="addToCart('Dessert', 120)">
+                            Add to Cart
+                        </button>
 
                     </div>
 
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Cart Section -->
+        <section class="cart-section section" id="cart">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <p>YOUR ORDER</p>
+
+                    <h1>Shopping Cart</h1>
+
+                </div>
+
+
+                <div class="cart-box">
+
+                    <div id="cart-items">
+                        <p>Your cart is empty.</p>
+                    </div>
+
+                    <h3>
+                        Total: ₹<span id="cart-total">0</span>
+                    </h3>
+
+                    <button class="order-btn" onclick="placeOrder()">
+                        Place Order
+                    </button>
+
+                    <p id="success-message"></p>
 
                 </div>
 
@@ -214,25 +233,11 @@
 
             <div class="footer-links">
 
-                <a href="FoodRush.html">
-                    Home
-                </a>
-
-                <a href="categories.html">
-                    Categories
-                </a>
-
-                <a href="FoodRush.html#restaurants">
-                    Restaurants
-                </a>
-
-                <a href="FoodRush.html#offers">
-                    Offers
-                </a>
-
-                <a href="FoodRush.html#about">
-                    About
-                </a>
+                <a href="FoodRush.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="FoodRush.html#restaurants">Restaurants</a>
+                <a href="FoodRush.html#offers">Offers</a>
+                <a href="FoodRush.html#about">About</a>
 
             </div>
 
@@ -248,6 +253,9 @@
         </div>
 
     </footer>
+
+
+    <script src="script.js"></script>
 
 </body>
 
