@@ -103,3 +103,11 @@ document.addEventListener("DOMContentLoaded", function() {
     clearSuccessMessage();
     showCart();
 });
+
+function clearCart() {
+
+    localStorage.removeItem("foodrushCart");
+
+    displayCart();
+
+}
