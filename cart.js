@@ -105,9 +105,9 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function clearCart() {
-
-    localStorage.removeItem("foodrushCart");
-
-    displayCart();
-
+    cart = [];
+    saveCart();
+    clearSuccessMessage();
+    showCart();
+    updateCartCount();
 }
