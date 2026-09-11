@@ -1,0 +1,58 @@
+let offers = [
+    {
+        food: "Pizza",
+        discount: "50%",
+        code: "PIZZA50"
+    },
+    {
+        food: "Noodles",
+        discount: "40%",
+        code: "NOODLES40"
+    },
+    {
+        food: "Desserts",
+        discount: "30%",
+        code: "SWEET30"
+    },
+    {
+        food: "Mexican Food",
+        discount: "35%",
+        code: "MEXICAN35"
+    },
+    {
+        food: "Biryani",
+        discount: "45%",
+        code: "BIRYANI45"
+    }
+];
+
+let images = [
+    "images/pizza.jpg",
+    "images/noodles.jpg",
+    "images/dessert.jpg",
+    "images/mexican.jpg",
+    "images/biryani.jpg"
+];
+
+let randomNumber = Math.floor(Math.random() * offers.length);
+
+let selectedOffer = offers[randomNumber];
+
+document.getElementById("offer-discount").innerHTML =
+    "Get " + selectedOffer.discount + " OFF<br>on " + selectedOffer.food;
+
+document.getElementById("offer-code").textContent =
+    selectedOffer.code;
+
+document.getElementById("offer-image").src =
+    images[randomNumber];
+
+console.log(selectedOffer);
+
+
+let menuBtn = document.getElementById("menu-btn");
+let navbar = document.getElementById("navbar");
+
+menuBtn.addEventListener("click", function() {
+    navbar.classList.toggle("active");
+});

@@ -13,34 +13,35 @@
 <body>
 
     <!-- Header -->
-    <header class="header">
+   <!-- Header -->
+<header class="header">
 
-        <div class="container nav">
+    <div class="container nav">
 
-            <a href="FoodRush.html" class="logo">
-                Food<span>Rush</span>
-            </a>
+        <a href="FoodRush.html" class="logo">
+            Food<span>Rush</span>
+        </a>
 
-            <nav class="navbar">
-                <a href="FoodRush.html">Home</a>
-				
-                <a href="categories.html">Categories</a>
-				
-                <a href="Restaurants.html">Restaurants</a>
-				
-                <a href="offers.html">Offers</a>
-				
-                <a href="#about">About</a>
-            </nav>
+        <!-- Hamburger Button -->
+        <button class="menu-btn" id="menu-btn">
+            ☰
+        </button>
 
-            <a href="#contact" class="login-btn">
-                Login
-            </a>
+        <nav class="navbar" id="navbar">
+            <a href="FoodRush.html">Home</a>
+            <a href="categories.html">Categories</a>
+            <a href="Restaurants.html">Restaurants</a>
+            <a href="offers.html">Offers</a>
+            <a href="#about">About</a>
+        </nav>
 
-        </div>
+        <a href="Login.html" class="login-btn">
+            Login
+        </a>
 
-    </header>
+    </div>
 
+</header>
 
     <!-- Main Content -->
     <main>
@@ -68,10 +69,7 @@
 
                     <div class="search-box">
 
-                        <input
-                            type="text"
-                            placeholder="Search for food or restaurant"
-                        >
+                        <input type="text" placeholder="Search for food or restaurant">
 
                         <button type="button">
                             Search
@@ -121,10 +119,8 @@
                     <!-- Category 1 -->
                     <div class="category-card">
 
-                        <img
-                            src="file:///home/root514/Downloads/enjoy-the-delicious-flavors-of-a-vegetarian-pizza-with-fresh-tomatoes-onions-and-green-peas-on-a-crispy-crust-from-a-nearby-pizzeria-add-basil-herbs-parsley-and-spices-for-an-extra-kick-photo.jpg"
-                            alt="Pizza"
-                        >
+                        <img src="file:///home/root514/Downloads/enjoy-the-delicious-flavors-of-a-vegetarian-pizza-with-fresh-tomatoes-onions-and-green-peas-on-a-crispy-crust-from-a-nearby-pizzeria-add-basil-herbs-parsley-and-spices-for-an-extra-kick-photo.jpg"
+                            alt="Delicious cheese pizza">
 
                         <h3>Pizza</h3>
 
@@ -136,10 +132,8 @@
                     <!-- Category 2 -->
                     <div class="category-card">
 
-                        <img
-                            src="file:///home/root514/Downloads/images.jpeg"
-                            alt="Burgers"
-                        >
+                        <img src="file:///home/root514/Downloads/images.jpeg"
+                            alt="Freshly made burger with lettuce and tomato">
 
                         <h3>Burgers</h3>
 
@@ -151,10 +145,8 @@
                     <!-- Category 3 -->
                     <div class="category-card">
 
-                        <img
-                            src="file:///home/root514/Downloads/360_F_51462207_vkgMdzvSlNVDEccyMXK8L3Qzd7fY9Miv.jpg"
-                            alt="Noodles"
-                        >
+                        <img src="file:///home/root514/Downloads/360_F_51462207_vkgMdzvSlNVDEccyMXK8L3Qzd7fY9Miv.jpg"
+                            alt="Delicious noodles">
 
                         <h3>Noodles</h3>
 
@@ -166,10 +158,8 @@
                     <!-- Category 4 -->
                     <div class="category-card">
 
-                        <img
-                            src="file:///home/root514/Downloads/istockphoto-495185782-612x612.jpg"
-                            alt="Biryani"
-                        >
+                        <img src="file:///home/root514/Downloads/istockphoto-495185782-612x612.jpg"
+                            alt="Delicious Biryani">
 
                         <h3>Biryani</h3>
 
@@ -181,10 +171,8 @@
                     <!-- Category 5 -->
                     <div class="category-card">
 
-                        <img
-                            src="file:///home/root514/Downloads/homemade-chicken-veggie-salad-recipe-idea_53876-101456.avif"
-                            alt="Mexican"
-                        >
+                        <img src="file:///home/root514/Downloads/homemade-chicken-veggie-salad-recipe-idea_53876-101456.avif"
+                            alt="Delicious Mexican Food">
 
                         <h3>Mexican</h3>
 
@@ -196,10 +184,7 @@
                     <!-- Category 6 -->
                     <div class="category-card">
 
-                        <img
-                            src="file:///home/root514/Downloads/images-desert.jpeg"
-                            alt="Desserts"
-                        >
+                        <img src="file:///home/root514/Downloads/images-desert.jpeg" alt="Delicious Desserts">
 
                         <h3>Desserts</h3>
 
@@ -365,15 +350,15 @@
                             LIMITED TIME OFFER
                         </p>
 
-                        <h2>
+                        <h2 id="offer-discount">
                             Get 50% OFF
                             <br>
-                            on your first order
+                            on Pizza
                         </h2>
 
                         <p>
                             Use code
-                            <strong>FIRST50</strong>
+                            <strong id="offer-code">PIZZA50</strong>
                             at checkout.
                         </p>
 
@@ -383,9 +368,8 @@
 
                     </div>
 
-
                     <div class="offer-icon">
-                        🍔
+                        <img id="offer-image" src="images/pizza.jpg" alt="Food Offer">
                     </div>
 
                 </div>
@@ -471,6 +455,7 @@
         </div>
 
     </footer>
+    <script src="script.js"></script>
 
 </body>
 
