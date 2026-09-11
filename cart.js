@@ -116,7 +116,7 @@ function placeOrder() {
     // Build order items list
     let itemsList = cart.map(item => `${item.name} (x${item.quantity})`).join(", ");
     
-    // Display order details on page
+    // Display simple message on screen (Order ID and delivery time only)
     let successMessage = document.getElementById("success-message");
     let orderDetails = document.getElementById("order-details");
     
@@ -126,18 +126,12 @@ function placeOrder() {
             Estimated Delivery: <strong>${deliveryTimeStr}</strong>`;
     }
     
+    // Hide the detailed order confirmation section
     if (orderDetails) {
-        orderDetails.style.display = "block";
-        orderDetails.innerHTML = `
-            <h3 style="color: #ff5a36; margin-top: 0;">Order Confirmation</h3>
-            <p><strong>Order ID:</strong> ${orderId}</p>
-            <p><strong>Estimated Delivery:</strong> ${deliveryTimeStr}</p>
-            <p><strong>Ordered Items:</strong> ${itemsList}</p>
-            <p><strong>Total Amount:</strong> ₹${total}</p>
-        `;
+        orderDetails.style.display = "none";
     }
     
-    // Send email using EmailJS
+    // Send complete order details via email
     sendOrderEmail(orderId, deliveryTimeStr, total, itemsList, userEmail);
     
     // Clear cart
