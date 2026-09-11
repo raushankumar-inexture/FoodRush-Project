@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodRush - Shopping Cart</title>
+
+    <link rel="stylesheet" href="cssfile.css">
+</head>
+
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav">
+
+            <a href="FoodRush.html" class="logo">
+                Food<span>Rush</span>
+            </a>
+
+            <nav class="navbar">
+                <a href="FoodRush.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="FoodRush.html#restaurants">Restaurants</a>
+                <a href="FoodRush.html#offers">Offers</a>
+                <a href="FoodRush.html#about">About</a>
+            </nav>
+
+            <a href="cart.html" class="login-btn">
+                Cart <span id="cart-count" style="margin-left: 5px;">0</span>
+            </a>
+
+        </div>
+    </header>
+
+
+    <!-- Cart Page -->
+    <main>
+        <section class="cart-page section">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <p>YOUR ORDER</p>
+                    <h1>Shopping Cart</h1>
+                </div>
+
+
+                <div class="cart-box">
+
+                    <div id="cart-items">
+                        <p>Your cart is empty.</p>
+                    </div>
+
+
+                    <h3 class="cart-total">
+                        Total: ₹<span id="cart-total">0</span>
+                    </h3>
+
+
+                    <button class="order-btn" onclick="placeOrder()">
+                        Place Order
+                    </button>
+
+
+                    <p id="success-message"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+
+            <div>
+                <a href="FoodRush.html" class="logo">
+                    Food<span>Rush</span>
+                </a>
+
+                <p>
+                    Delicious food delivered fast.
+                </p>
+            </div>
+
+
+            <div class="footer-links">
+                <a href="FoodRush.html">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="FoodRush.html#restaurants">Restaurants</a>
+                <a href="FoodRush.html#offers">Offers</a>
+                <a href="FoodRush.html#about">About</a>
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+            <p>
+                © 2026 FoodRush. All rights reserved.
+            </p>
+        </div>
+
+    </footer>
+
+
+    <script src="cart.js"></script>
+
+</body>
+
+</html>

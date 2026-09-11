@@ -1,5 +1,18 @@
-// Cart functionality for categories.html
+// Cart functionality - persists across pages using localStorage
 let cart = [];
+
+// Load cart from localStorage
+function loadCart() {
+    const savedCart = localStorage.getItem("foodrushCart");
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+    }
+}
+
+// Save cart to localStorage
+function saveCart() {
+    localStorage.setItem("foodrushCart", JSON.stringify(cart));
+}
 
 function addToCart(name, price) {
     let item = cart.find(food => food.name === name);
@@ -14,7 +27,18 @@ function addToCart(name, price) {
         });
     }
 
+    saveCart();
+    clearSuccessMessage();
     showCart();
+    updateCartCount();
+}
+
+function updateCartCount() {
+    let cartCount = document.getElementById("cart-count");
+    if (cartCount) {
+        let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+    }
 }
 
 function showCart() {
@@ -47,6 +71,14 @@ function showCart() {
     }
 
     cartTotal.innerText = total;
+    updateCartCount();
+}
+
+function clearSuccessMessage() {
+    let successMessage = document.getElementById("success-message");
+    if (successMessage) {
+        successMessage.innerText = "";
+    }
 }
 
 function placeOrder() {
@@ -61,10 +93,13 @@ function placeOrder() {
     }
 
     cart = [];
+    saveCart();
     showCart();
 }
 
 // Initialize cart on page load
 document.addEventListener("DOMContentLoaded", function() {
+    loadCart();
+    clearSuccessMessage();
     showCart();
 });
