@@ -161,8 +161,11 @@ function sendOrderEmail(orderId, deliveryTime, total, itemsList, userEmail) {
     console.log("Sending email to:", userEmail);
     console.log("Order details:", emailData);
     
+    // Initialize EmailJS with your Public Key
+    emailjs.init(EMAILJS_CONFIG.publicKey);
+    
     // Send email using EmailJS
-    emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, emailData, EMAILJS_CONFIG.publicKey)
+    emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, emailData)
         .then(function(response) {
             console.log("Email sent successfully:", response);
             alert("Confirmation email sent to " + userEmail);
