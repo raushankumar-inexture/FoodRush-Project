@@ -171,10 +171,7 @@
 
 
                         <!-- Place Order -->
-                        <button
-                            class="order-btn"
-                            onclick="placeOrder()"
-                            style="
+                        <button class="order-btn" onclick="placeOrder()" style="
                                 display: block;
                                 width: 100%;
                                 max-width: 450px;
@@ -187,11 +184,25 @@
                                 cursor: pointer;
                                 font-size: 18px;
                                 font-weight: bold;
-                            "
-                        >
+                            ">
                             Place Order
                         </button>
-
+                        <button onclick="clearCart()" style="
+        display: block;
+        width: 100%;
+        max-width: 450px;
+        margin: 15px auto 0;
+        background-color: #ffffff;
+        color: #ff5a36;
+        border: 1px solid #ff5a36;
+        padding: 14px 30px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+    ">
+                            Clear Cart
+                        </button>
 
 
                         <!-- Success Message -->
@@ -245,17 +256,13 @@
                 min-width: 250px;
             ">
 
-                <a
-                    href="FoodRush.html"
-                    class="logo"
-                    style="
+                <a href="FoodRush.html" class="logo" style="
                         font-size: 26px;
                         font-weight: bold;
                         color: #ffffff;
                         margin-bottom: 15px;
                         display: inline-block;
-                    "
-                >
+                    ">
                     Food<span style="color: #ff5a36;">Rush</span>
                 </a>
 
@@ -319,7 +326,7 @@
 
 
 
-    <!-- Cart JavaScript -->
+
     <script src="cart.js"></script>
 
 </body>
