@@ -228,7 +228,7 @@
                                 Don't have an account?
 
                                 <a
-                                    href="#"
+                                    href="Register.html"
                                     class="text-danger"
                                 >
                                     Register
@@ -425,11 +425,26 @@
 
 
 
-            // Login success
+            // Check stored user in localStorage
+            const storedUsers = JSON.parse(localStorage.getItem("foodrushUsers")) || [];
+            const storedUser = storedUsers.find(
+                user => user.email === email.value && user.password === password.value
+            );
 
-            loginSuccess.textContent =
-                "Login successful Welcome to FoodRush.";
+            if (storedUser) {
+                // Login success
+                loginSuccess.textContent =
+                    "Login successful! Welcome to FoodRush.";
 
+                // Redirect to FoodRush.html after 1.5 seconds
+                setTimeout(() => {
+                    window.location.href = "FoodRush.html";
+                }, 1500);
+            } else {
+                // Login failed
+                loginError.textContent =
+                    "Invalid email or password. Please try again or register.";
+            }
         });
 
 
