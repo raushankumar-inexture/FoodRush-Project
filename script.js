@@ -57,9 +57,9 @@ console.log(selectedOffer);
         let message = document.getElementById("search-message");
         let query = input.value.trim().toLowerCase();
 
-        message.textContent = "";
-
         if (!query) return;
+
+        message.textContent = "";
 
         let restaurants = [
             "italian corner", "burger house", "spice kitchen",
