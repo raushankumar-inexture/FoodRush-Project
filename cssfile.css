@@ -1,4 +1,4 @@
-/* 
+/*
    Global Styles
 */
 
@@ -41,17 +41,19 @@ input {
 }
 
 
-/* 
+/*
    Header
 */
 
 .header {
     background-color: #ffffff;
     border-bottom: 1px solid #eeeeee;
+
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+
     z-index: 1000;
     width: 100%;
 }
@@ -109,7 +111,11 @@ input {
     color: #ffffff;
 }
 
-/* User Info */
+
+/*
+   User Info
+*/
+
 .user-info {
     display: flex;
     align-items: center;
@@ -122,17 +128,21 @@ input {
 
 .user-name {
     font-weight: bold;
-    color: #333;
+    color: #333333;
 }
 
 .logout-btn {
     padding: 8px 16px;
+
     border: 1px solid #ff5a36;
     border-radius: 6px;
+
     background-color: transparent;
     color: #ff5a36;
+
     font-weight: bold;
     cursor: pointer;
+
     transition: all 0.3s ease;
 }
 
@@ -142,11 +152,12 @@ input {
 }
 
 
-/* Hero Section*/
+/*
+   Hero Section
+*/
 
 .hero {
     padding: 80px 0;
-
     background-color: #fff7f3;
 }
 
@@ -182,7 +193,6 @@ input {
 
 .hero h1 span {
     display: block;
-
     color: #ff5a36;
 }
 
@@ -192,7 +202,6 @@ input {
     margin-bottom: 25px;
 
     color: #666666;
-
     font-size: 17px;
 }
 
@@ -282,7 +291,9 @@ input {
 }
 
 
-/* Section Heading*/
+/*
+   Section Heading
+*/
 
 .section-heading {
     margin-bottom: 35px;
@@ -304,7 +315,9 @@ input {
 }
 
 
-/* Popular Categories */
+/*
+   Popular Categories
+*/
 
 .category-grid {
     display: flex;
@@ -313,13 +326,7 @@ input {
     gap: 20px;
 }
 
-
-/* Individual Category Card */
-
 .category-card {
-    /*
-       3 cards per row on desktop
-    */
     flex: 0 0 calc((100% - 40px) / 3);
 
     padding: 12px;
@@ -338,9 +345,6 @@ input {
         box-shadow 0.3s ease;
 }
 
-
-/* Category Image */
-
 .category-card img {
     width: 100%;
     height: 180px;
@@ -352,18 +356,12 @@ input {
     border-radius: 7px;
 }
 
-
-/* Category Title */
-
 .category-card h3 {
     margin-top: 15px;
     margin-bottom: 5px;
 
     font-size: 18px;
 }
-
-
-/* Category Items */
 
 .category-card p {
     margin-bottom: 5px;
@@ -373,9 +371,6 @@ input {
     font-size: 14px;
 }
 
-
-/* Category Hover */
-
 .category-card:hover {
     transform: translateY(-5px);
 
@@ -383,6 +378,9 @@ input {
 }
 
 
+/*
+   Restaurants
+*/
 
 .restaurants {
     background-color: #f8f8f8;
@@ -390,16 +388,17 @@ input {
 
 .restaurant-grid {
     display: flex;
+
     overflow-x: auto;
+
     gap: 25px;
+
     padding: 10px 0;
-    
-    /* Custom scrollbar */
+
     scrollbar-width: thin;
     scrollbar-color: #ff5a36 #f1f1f1;
 }
 
-/* WebKit browsers */
 .restaurant-grid::-webkit-scrollbar {
     height: 8px;
 }
@@ -420,6 +419,7 @@ input {
 
 .restaurant-card {
     flex: 0 0 calc((100% - 50px) / 3);
+
     overflow: hidden;
 
     background-color: #ffffff;
@@ -452,7 +452,6 @@ input {
 
 .rating {
     color: #ff5a36;
-
     font-weight: bold;
 }
 
@@ -462,7 +461,6 @@ input {
 
 .restaurant-content > p {
     color: #777777;
-
     font-size: 14px;
 }
 
@@ -481,7 +479,9 @@ input {
 }
 
 
-
+/*
+   Limited Time Offers
+*/
 
 .offer-banner {
     padding: 80px;
@@ -528,7 +528,9 @@ input {
 }
 
 
-
+/*
+   About Section - Homepage
+*/
 
 .about-content {
     display: flex;
@@ -554,12 +556,105 @@ input {
 
 .about-text p {
     color: #666666;
-
     font-size: 17px;
 }
 
 
+/*
+   About Page
+*/
 
+.about-page main {
+    min-height: 70vh;
+}
+
+.about-page .about {
+    padding: 80px 0;
+
+    background-color: #fff7f3;
+}
+
+.about-page .section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.about-page .section-heading p {
+    margin-bottom: 8px;
+
+    color: #ff5a36;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.about-page .section-heading h1 {
+    font-size: 42px;
+    line-height: 1.2;
+
+    color: #222222;
+}
+
+.about-page .section-heading::after {
+    content: "";
+
+    display: block;
+
+    width: 60px;
+    height: 3px;
+
+    margin: 18px auto 0;
+
+    background-color: #ff5a36;
+
+    border-radius: 5px;
+}
+
+
+/* About Content Box */
+
+.about-page .about-content {
+    max-width: 850px;
+
+    margin: 0 auto;
+    padding: 40px;
+
+    display: block;
+
+    background-color: #ffffff;
+
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* About Text */
+
+.about-page .about-text {
+    width: 100%;
+}
+
+.about-page .about-text p {
+    margin-bottom: 20px;
+
+    color: #666666;
+
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.about-page .about-text p:last-child {
+    margin-bottom: 0;
+}
+
+
+/*
+   Footer
+*/
 
 .footer {
     padding-top: 30px;
@@ -578,13 +673,11 @@ input {
 
 .footer p {
     margin-top: 8px;
-
     color: #aaaaaa;
 }
 
 .footer-links {
     display: flex;
-
     gap: 20px;
 }
 
@@ -607,7 +700,25 @@ input {
 }
 
 
+/*
+   Hamburger Menu
+*/
 
+.menu-btn {
+    display: none;
+
+    font-size: 28px;
+
+    background: none;
+    border: none;
+
+    cursor: pointer;
+}
+
+
+/*
+   Tablet
+*/
 
 @media (max-width: 900px) {
 
@@ -642,45 +753,96 @@ input {
         flex: 0 0 calc((100% - 20px) / 2);
     }
 
-
-    /* Restaurants */
-
-    .restaurant-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
 }
 
 
+/*
+   Mobile
+*/
 
-
-@media (max-width: 700px) {
+@media (max-width: 768px) {
 
     .section {
         padding: 55px 0;
     }
 
 
-    /* Header */
+    /*
+       Header
+    */
 
     .nav {
-        flex-direction: column;
-
-        gap: 15px;
-    }
-
-    .navbar {
-        width: 100%;
-
-        justify-content: center;
+        flex-direction: row;
 
         flex-wrap: wrap;
 
         gap: 15px;
+
+        padding: 12px 0;
     }
 
 
-    /* Hero */
+    /*
+       Hamburger
+    */
+
+    .menu-btn {
+        display: block;
+
+        margin-left: auto;
+    }
+
+
+    /*
+       Navbar hidden by default
+    */
+
+    .navbar {
+        display: none;
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 15px;
+
+        padding: 15px 0;
+    }
+
+
+    /*
+       Navbar visible when JavaScript
+       adds active class
+    */
+
+    .navbar.active {
+        display: flex;
+    }
+
+
+    /*
+       Login button
+    */
+
+    .login-btn {
+        display: none;
+    }
+
+
+    /*
+       User Info
+    */
+
+    .user-info {
+        display: none;
+    }
+
+
+    /*
+       Hero
+    */
 
     .hero {
         padding: 60px 0;
@@ -712,7 +874,9 @@ input {
     }
 
 
-    /* Categories */
+    /*
+       Categories
+    */
 
     .category-grid {
         gap: 20px;
@@ -723,14 +887,18 @@ input {
     }
 
 
-    /* Restaurants */
+    /*
+       Restaurants
+    */
 
-    .restaurant-grid {
-        grid-template-columns: 1fr;
+    .restaurant-card {
+        flex: 0 0 calc((100% - 25px) / 2);
     }
 
 
-    /* About */
+    /*
+       About Homepage
+    */
 
     .about-content {
         flex-direction: column;
@@ -752,7 +920,34 @@ input {
     }
 
 
-    /* Offers */
+    /*
+       About Page
+    */
+
+    .about-page .about {
+        padding: 60px 0;
+    }
+
+    .about-page .section-heading {
+        margin-bottom: 30px;
+    }
+
+    .about-page .section-heading h1 {
+        font-size: 34px;
+    }
+
+    .about-page .about-content {
+        padding: 30px 25px;
+    }
+
+    .about-page .about-text p {
+        font-size: 16px;
+    }
+
+
+    /*
+       Offers
+    */
 
     .offer-banner {
         padding: 30px 20px;
@@ -760,10 +955,33 @@ input {
         text-align: center;
     }
 
+
+    /*
+       Footer
+    */
+
+    .footer-content {
+        padding: 30px 0;
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
 }
 
 
-
+/*
+   Small Mobile
+*/
 
 @media (max-width: 500px) {
 
@@ -772,7 +990,9 @@ input {
     }
 
 
-    /* Hero */
+    /*
+       Hero
+    */
 
     .hero h1 {
         font-size: 36px;
@@ -798,21 +1018,27 @@ input {
     }
 
 
-    /* Section Heading */
+    /*
+       Section Heading
+    */
 
     .section-heading h2 {
         font-size: 30px;
     }
 
 
-    /* Category */
+    /*
+       Category
+    */
 
     .category-card img {
         height: 190px;
     }
 
 
-    /* Offers */
+    /*
+       Offers
+    */
 
     .offer-banner h2 {
         font-size: 30px;
@@ -822,103 +1048,73 @@ input {
         display: none;
     }
 
-}
 
+    /*
+       About Page
+    */
 
-/* 
-   Hamburger Menu
-*/
-
-.menu-btn {
-    display: none;
-
-    font-size: 28px;
-
-    background: none;
-    border: none;
-
-    cursor: pointer;
-}
-
-
-/* Show Hamburger only on Mobile */
-
-@media (max-width: 768px) {
-
-    .menu-btn {
-        display: block;
+    .about-page .about {
+        padding: 45px 0;
     }
 
-    .navbar {
-        display: none;
-        width: 100%;
-
-        flex-direction: column;
-        align-items: center;
-
-        gap: 15px;
+    .about-page .section-heading h1 {
+        font-size: 30px;
     }
 
-    .navbar.active {
-        display: flex;
+    .about-page .about-content {
+        padding: 25px 20px;
+
+        border-radius: 10px;
     }
 
-    .login-btn {
-        display: none;
+    .about-page .about-text p {
+        font-size: 15px;
+
+        line-height: 1.7;
     }
 
-}
 
-/* Responsive for Restaurant Grid */
-@media (max-width: 1024px) {
-    .restaurant-card {
-        flex: 0 0 calc((100% - 25px) / 2);
-    }
-}
+    /*
+       Restaurant
+    */
 
-@media (max-width: 768px) {
-    .restaurant-card {
-        flex: 0 0 calc((100% - 25px) / 2);
-    }
-}
-
-@media (max-width: 500px) {
     .restaurant-card {
         flex: 0 0 100%;
     }
+
 }
 
 
+/*
+   Responsive Restaurant Grid
+*/
+
+@media (max-width: 1024px) {
+
+    .restaurant-card {
+        flex: 0 0 calc((100% - 25px) / 2);
+    }
+
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Add to Cart Button */
+/*
+   Add to Cart Button
+*/
 
 .category-card button {
     background-color: #ff5a1f;
+
     color: white;
+
     border: none;
+
     padding: 10px 18px;
+
     border-radius: 6px;
+
     cursor: pointer;
+
     margin-top: 10px;
 }
 
@@ -927,7 +1123,9 @@ input {
 }
 
 
-/* Cart */
+/*
+   Cart
+*/
 
 .cart-section {
     background-color: #f8f8f8;
@@ -935,34 +1133,51 @@ input {
 
 .cart-box {
     max-width: 700px;
+
     margin: auto;
+
     background: white;
+
     padding: 25px;
+
     border-radius: 10px;
+
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .cart-item {
     display: flex;
+
     justify-content: space-between;
+
     padding: 15px 0;
+
     border-bottom: 1px solid #ddd;
 }
 
 .cart-box h3 {
     text-align: right;
+
     margin-top: 20px;
 }
 
 .order-btn {
     display: block;
+
     margin: 20px auto 0;
+
     background-color: #28a745;
+
     color: white;
+
     border: none;
+
     padding: 12px 25px;
+
     border-radius: 6px;
+
     cursor: pointer;
+
     font-size: 16px;
 }
 
@@ -972,8 +1187,11 @@ input {
 
 #success-message {
     text-align: center;
+
     color: #28a745;
+
     font-weight: bold;
+
     margin-top: 15px;
 }
 
@@ -983,45 +1201,64 @@ input {
 
 .cart-box {
     background-color: #ffffff;
+
     padding: 30px;
+
     border-radius: 10px;
+
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
     max-width: 800px;
+
     margin: 0 auto;
 }
 
 .cart-total {
     text-align: right;
+
     font-size: 20px;
+
     margin: 20px 0;
+
     color: #ff5a36;
 }
 
 .cart-item {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     padding: 15px 0;
+
     border-bottom: 1px solid #eeeeee;
+
     transition: background-color 0.2s ease;
 }
 
 .cart-item:hover {
     background-color: #f9f9f9;
+
     padding-left: 10px;
     padding-right: 10px;
+
     border-radius: 6px;
 }
 
 .cart-item span:first-child {
     font-weight: bold;
+
     color: #333333;
+
     font-size: 16px;
 }
 
 .cart-item span:last-child {
     color: #666666;
+
     font-size: 15px;
+
     text-align: right;
 }
 
@@ -1031,31 +1268,10 @@ input {
 
 #cart-items p {
     text-align: center;
+
     color: #999;
+
     padding: 40px 0;
+
     font-size: 16px;
-}
-
-/* 
-   Footer Responsive
-*/
-
-@media (max-width: 700px) {
-
-    .footer-content {
-        padding: 30px 0;
-
-        flex-direction: column;
-
-        gap: 20px;
-
-        text-align: center;
-    }
-
-    .footer-links {
-        flex-wrap: wrap;
-
-        justify-content: center;
-    }
-
 }
