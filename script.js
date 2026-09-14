@@ -59,6 +59,9 @@ console.log(selectedOffer);
 
         if (!query) return;
 
+        message.style.display = "none";
+        document.getElementById("explore-btn").style.display = "none";
+
         message.textContent = "";
 
         let restaurants = [
@@ -108,9 +111,12 @@ console.log(selectedOffer);
             }
         }
 
+        message.style.display = "block";
         message.textContent = "No food or restaurant found.";
         message.style.color = "red";
         message.style.marginTop = "10px";
+
+        document.getElementById("explore-btn").style.display = "inline-block";
     }
 
 
