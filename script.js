@@ -79,7 +79,7 @@ console.log(selectedOffer);
         // Step 1: Check exact restaurant match
         for (let i = 0; i < restaurants.length; i++) {
             if (restaurants[i] === query) {
-                window.location.href = "Restaurants.html";
+                window.location.href = "Restaurants.html?search=" + query;
                 return;
             }
         }
@@ -95,7 +95,7 @@ console.log(selectedOffer);
         // Step 3: Check partial restaurant match
         for (let i = 0; i < restaurants.length; i++) {
             if (restaurants[i].indexOf(query) !== -1 || query.indexOf(restaurants[i]) !== -1) {
-                window.location.href = "Restaurants.html";
+                window.location.href = "Restaurants.html?search=" + query;
                 return;
             }
         }

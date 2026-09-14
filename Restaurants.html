@@ -82,7 +82,7 @@
 
 
                     <!-- Restaurant 1 -->
-                    <a href="categories.html?restaurant=pizza" class="category-card">
+                    <a href="categories.html?restaurant=pizza" class="category-card" data-search="italian corner">
 
                         <div class="restaurant-image">
                             🍕
@@ -125,7 +125,7 @@
 
 
                     <!-- Restaurant 2 -->
-                    <a href="categories.html?restaurant=burger" class="category-card">
+                    <a href="categories.html?restaurant=burger" class="category-card" data-search="burger house">
 
                         <div class="restaurant-image">
                             🍔
@@ -168,7 +168,7 @@
 
 
                     <!-- Restaurant 3 -->
-                    <a href="categories.html?restaurant=biryani" class="category-card">
+                    <a href="categories.html?restaurant=biryani" class="category-card" data-search="spice kitchen">
 
                         <div class="restaurant-image">
                             🍛
@@ -211,7 +211,7 @@
 
 
                     <!-- Restaurant 4 -->
-                    <a href="categories.html?restaurant=pizza" class="category-card">
+                    <a href="categories.html?restaurant=pizza" class="category-card" data-search="pizza palace">
 
                         <div class="restaurant-image">
                             🍕
@@ -254,7 +254,7 @@
 
 
                     <!-- Restaurant 5 -->
-                    <a href="categories.html?restaurant=burger" class="category-card">
+                    <a href="categories.html?restaurant=burger" class="category-card" data-search="burger barn">
 
                         <div class="restaurant-image">
                             🍔
@@ -297,7 +297,7 @@
 
 
                     <!-- Restaurant 6 -->
-                    <a href="categories.html?restaurant=noodles" class="category-card">
+                    <a href="categories.html?restaurant=noodles" class="category-card" data-search="noodle ninja">
 
                         <div class="restaurant-image">
                             🍜
@@ -340,7 +340,7 @@
 
 
                     <!-- Restaurant 7 -->
-                    <a href="categories.html?restaurant=mexican" class="category-card">
+                    <a href="categories.html?restaurant=mexican" class="category-card" data-search="taco town">
 
                         <div class="restaurant-image">
                             🌮
@@ -383,7 +383,7 @@
 
 
                     <!-- Restaurant 8 -->
-                    <a href="categories.html?restaurant=dessert" class="category-card">
+                    <a href="categories.html?restaurant=dessert" class="category-card" data-search="sweet dreams">
 
                         <div class="restaurant-image">
                             🍦
@@ -425,6 +425,8 @@
 
 
                 </div>
+
+                <p id="restaurant-search-message"></p>
 
             </div>
 
@@ -484,6 +486,28 @@
     </footer>
 
 
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const search = params.get('search');
+
+        if (search) {
+            const cards = document.querySelectorAll('.category-card');
+            let found = false;
+            cards.forEach(function(card) {
+                if (card.dataset.search === search) {
+                    card.style.display = '';
+                    found = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            if (!found) {
+                document.getElementById("restaurant-search-message").textContent = "No restaurant found.";
+                document.getElementById("restaurant-search-message").style.color = "red";
+                document.getElementById("restaurant-search-message").style.marginTop = "10px";
+            }
+        }
+    </script>
 
     <script src="cart.js"></script>
 
