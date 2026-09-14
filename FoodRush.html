@@ -82,13 +82,15 @@
 
                     <div class="search-box">
 
-                        <input type="text" placeholder="Search for food or restaurant">
+                        <input type="text" id="search-input" placeholder="Search for food or restaurant">
 
-                        <button type="button">
+                        <button type="button" id="search-btn" onclick="searchFood()">
                             Search
                         </button>
 
                     </div>
+
+                    <p id="search-message"></p>
 
                     <a href="#restaurants" class="primary-btn">
                         Explore Food

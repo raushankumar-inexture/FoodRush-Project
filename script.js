@@ -51,7 +51,52 @@ document.getElementById("offer-image").src =
 console.log(selectedOffer);
 
 
-// Hamburger menu
+    // Search Functionality
+    function searchFood() {
+        let input = document.getElementById("search-input");
+        let message = document.getElementById("search-message");
+        let query = input.value.trim().toLowerCase();
+
+        message.textContent = "";
+
+        if (!query) return;
+
+        let restaurants = [
+            "italian corner", "burger house", "spice kitchen",
+            "pizza palace", "burger barn", "noodle ninja",
+            "taco town", "sweet dreams"
+        ];
+
+        let foodCategories = [
+            { name: "pizza", param: "pizza" },
+            { name: "burger", param: "burger" },
+            { name: "noodle", param: "noodles" },
+            { name: "biryani", param: "biryani" },
+            { name: "mexican", param: "mexican" },
+            { name: "dessert", param: "dessert" }
+        ];
+
+        for (let i = 0; i < restaurants.length; i++) {
+            if (restaurants[i].indexOf(query) !== -1 || query.indexOf(restaurants[i]) !== -1) {
+                window.location.href = "Restaurants.html";
+                return;
+            }
+        }
+
+        for (let j = 0; j < foodCategories.length; j++) {
+            if (foodCategories[j].name.indexOf(query) !== -1 || query.indexOf(foodCategories[j].name) !== -1) {
+                window.location.href = "categories.html?restaurant=" + foodCategories[j].param;
+                return;
+            }
+        }
+
+        message.textContent = "No food or restaurant found.";
+        message.style.color = "red";
+        message.style.marginTop = "10px";
+    }
+
+
+    // Hamburger menu
 let menuBtn = document.getElementById("menu-btn");
 let navbar = document.getElementById("navbar");
 
@@ -89,6 +134,15 @@ function logout() {
 // Initialize auth state when page loads
 document.addEventListener("DOMContentLoaded", function() {
     checkAuthState();
+
+    let searchInput = document.getElementById("search-input");
+    if (searchInput) {
+        searchInput.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+                searchFood();
+            }
+        });
+    }
 
     // Add logout event listener if user info element exists
     const logoutBtn = document.getElementById("logoutBtn");
