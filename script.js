@@ -76,6 +76,23 @@ console.log(selectedOffer);
             { name: "dessert", param: "dessert" }
         ];
 
+        // Step 1: Check exact restaurant match
+        for (let i = 0; i < restaurants.length; i++) {
+            if (restaurants[i] === query) {
+                window.location.href = "Restaurants.html";
+                return;
+            }
+        }
+
+        // Step 2: Check exact food match
+        for (let j = 0; j < foodCategories.length; j++) {
+            if (foodCategories[j].name === query) {
+                window.location.href = "categories.html?restaurant=" + foodCategories[j].param;
+                return;
+            }
+        }
+
+        // Step 3: Check partial restaurant match
         for (let i = 0; i < restaurants.length; i++) {
             if (restaurants[i].indexOf(query) !== -1 || query.indexOf(restaurants[i]) !== -1) {
                 window.location.href = "Restaurants.html";
@@ -83,6 +100,7 @@ console.log(selectedOffer);
             }
         }
 
+        // Step 4: Check partial food match
         for (let j = 0; j < foodCategories.length; j++) {
             if (foodCategories[j].name.indexOf(query) !== -1 || query.indexOf(foodCategories[j].name) !== -1) {
                 window.location.href = "categories.html?restaurant=" + foodCategories[j].param;
