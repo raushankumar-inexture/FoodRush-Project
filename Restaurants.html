@@ -2,21 +2,25 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>FoodRush - Restaurants</title>
 
     <link rel="stylesheet" href="cssfile.css">
 
-    
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/emailjs.min.js"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 </head>
 
 
 <body>
 
-    
+
+    <!-- Header -->
     <header class="header">
 
         <div class="container nav">
@@ -25,18 +29,27 @@
                 Food<span>Rush</span>
             </a>
 
+
             <nav class="navbar">
 
                 <a href="FoodRush.html">Home</a>
+
                 <a href="categories.html">Categories</a>
+
                 <a href="Restaurants.html">Restaurants</a>
+
                 <a href="FoodRush.html#offers">Offers</a>
+
                 <a href="FoodRush.html#about">About</a>
 
             </nav>
 
+
             <a href="cart.html" class="login-btn">
-                Cart <span id="cart-count" style="margin-left: 5px;">0</span>
+
+                Cart
+                <span id="cart-count" style="margin-left: 5px;">0</span>
+
             </a>
 
         </div>
@@ -44,31 +57,37 @@
     </header>
 
 
-   
+
+    <!-- Restaurants Page -->
     <main>
 
         <section class="restaurants section">
 
             <div class="container">
 
+
                 <!-- Page Heading -->
                 <div class="section-heading">
 
                     <p>TOP PICKS</p>
+
                     <h1>Restaurants</h1>
 
                 </div>
 
 
-                
-                <div class="restaurant-grid">
+
+                <!-- Restaurant Items -->
+                <div class="category-grid">
+
 
                     <!-- Restaurant 1 -->
-                    <article class="restaurant-card">
+                    <div class="category-card">
 
                         <div class="restaurant-image">
                             🍕
                         </div>
+
 
                         <div class="restaurant-content">
 
@@ -76,13 +95,16 @@
                                 ★ 4.8
                             </span>
 
+
                             <h3>
                                 Italian Corner
                             </h3>
 
+
                             <p>
                                 Pizza • Italian • Fast Food
                             </p>
+
 
                             <div class="restaurant-info">
 
@@ -98,15 +120,17 @@
 
                         </div>
 
-                    </article>
+                    </div>
 
 
-                   
-                    <article class="restaurant-card">
+
+                    <!-- Restaurant 2 -->
+                    <div class="category-card">
 
                         <div class="restaurant-image">
                             🍔
                         </div>
+
 
                         <div class="restaurant-content">
 
@@ -114,13 +138,16 @@
                                 ★ 4.6
                             </span>
 
+
                             <h3>
                                 Burger House
                             </h3>
 
+
                             <p>
                                 Burgers • American • Fast Food
                             </p>
+
 
                             <div class="restaurant-info">
 
@@ -136,14 +163,17 @@
 
                         </div>
 
-                    </article>
+                    </div>
 
 
-                    <article class="restaurant-card">
+
+                    <!-- Restaurant 3 -->
+                    <div class="category-card">
 
                         <div class="restaurant-image">
                             🍛
                         </div>
+
 
                         <div class="restaurant-content">
 
@@ -151,13 +181,16 @@
                                 ★ 4.7
                             </span>
 
+
                             <h3>
                                 Spice Kitchen
                             </h3>
 
+
                             <p>
                                 Indian • Biryani • North Indian
                             </p>
+
 
                             <div class="restaurant-info">
 
@@ -173,15 +206,17 @@
 
                         </div>
 
-                    </article>
+                    </div>
 
 
-                    
-                    <article class="restaurant-card">
+
+                    <!-- Restaurant 4 -->
+                    <div class="category-card">
 
                         <div class="restaurant-image">
                             🍕
                         </div>
+
 
                         <div class="restaurant-content">
 
@@ -189,13 +224,16 @@
                                 ★ 4.5
                             </span>
 
+
                             <h3>
                                 Pizza Palace
                             </h3>
 
+
                             <p>
                                 Pizza • Italian • Fast Food
                             </p>
+
 
                             <div class="restaurant-info">
 
@@ -211,15 +249,17 @@
 
                         </div>
 
-                    </article>
+                    </div>
 
 
-                   
-                    <article class="restaurant-card">
+
+                    <!-- Restaurant 5 -->
+                    <div class="category-card">
 
                         <div class="restaurant-image">
                             🍔
                         </div>
+
 
                         <div class="restaurant-content">
 
@@ -227,13 +267,16 @@
                                 ★ 4.8
                             </span>
 
+
                             <h3>
                                 Burger Barn
                             </h3>
 
+
                             <p>
                                 Burgers • American • Fast Food
                             </p>
+
 
                             <div class="restaurant-info">
 
@@ -249,15 +292,17 @@
 
                         </div>
 
-                    </article>
+                    </div>
 
 
-                  
-                    <article class="restaurant-card">
+
+                    <!-- Restaurant 6 -->
+                    <div class="category-card">
 
                         <div class="restaurant-image">
                             🍜
                         </div>
+
 
                         <div class="restaurant-content">
 
@@ -265,13 +310,16 @@
                                 ★ 4.6
                             </span>
 
+
                             <h3>
                                 Noodle Ninja
                             </h3>
 
+
                             <p>
                                 Noodles • Asian • Fast Food
                             </p>
+
 
                             <div class="restaurant-info">
 
@@ -287,14 +335,17 @@
 
                         </div>
 
-                    </article>
+                    </div>
 
 
-                    <article class="restaurant-card">
+
+                    <!-- Restaurant 7 -->
+                    <div class="category-card">
 
                         <div class="restaurant-image">
                             🌮
                         </div>
+
 
                         <div class="restaurant-content">
 
@@ -302,13 +353,16 @@
                                 ★ 4.4
                             </span>
 
+
                             <h3>
                                 Taco Town
                             </h3>
 
+
                             <p>
                                 Mexican • Tacos • Fast Food
                             </p>
+
 
                             <div class="restaurant-info">
 
@@ -324,15 +378,17 @@
 
                         </div>
 
-                    </article>
+                    </div>
 
 
-                    
-                    <article class="restaurant-card">
+
+                    <!-- Restaurant 8 -->
+                    <div class="category-card">
 
                         <div class="restaurant-image">
                             🍦
                         </div>
+
 
                         <div class="restaurant-content">
 
@@ -340,13 +396,16 @@
                                 ★ 4.9
                             </span>
 
+
                             <h3>
                                 Sweet Dreams
                             </h3>
 
+
                             <p>
                                 Desserts • Ice Cream • Sweets
                             </p>
+
 
                             <div class="restaurant-info">
 
@@ -362,7 +421,8 @@
 
                         </div>
 
-                    </article>
+                    </div>
+
 
                 </div>
 
@@ -373,10 +433,12 @@
     </main>
 
 
-    
+
+    <!-- Footer -->
     <footer class="footer">
 
         <div class="container footer-content">
+
 
             <div>
 
@@ -384,31 +446,43 @@
                     Food<span>Rush</span>
                 </a>
 
+
                 <p>
                     Delicious food delivered fast.
                 </p>
+
             </div>
+
 
 
             <div class="footer-links">
 
                 <a href="FoodRush.html">Home</a>
+
                 <a href="categories.html">Categories</a>
+
                 <a href="Restaurants.html">Restaurants</a>
+
                 <a href="FoodRush.html#offers">Offers</a>
+
                 <a href="FoodRush.html#about">About</a>
+
             </div>
 
         </div>
 
 
+
         <div class="copyright">
+
             <p>
                 © 2026 FoodRush. All rights reserved.
             </p>
+
         </div>
 
     </footer>
+
 
 
     <script src="cart.js"></script>
