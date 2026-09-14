@@ -56,11 +56,17 @@
                 </div>
 
 
+                <!-- Sort Buttons -->
+                <div style="margin-bottom:20px; text-align:center;">
+                    <button onclick="sortByPrice('low')" style="padding:10px 20px; margin:5px; border:1px solid #ff5a36; background-color:#ffffff; color:#ff5a36; border-radius:6px; cursor:pointer; font-size:14px; font-weight:bold;">Low to High</button>
+                    <button onclick="sortByPrice('high')" style="padding:10px 20px; margin:5px; border:1px solid #ff5a36; background-color:#ffffff; color:#ff5a36; border-radius:6px; cursor:pointer; font-size:14px; font-weight:bold;">High to Low</button>
+                </div>
+
                 <!-- Food Items -->
                 <div class="category-grid">
 
                     <!-- Pizza -->
-                    <div class="category-card" data-category="pizza">
+                    <div class="category-card" data-category="pizza" data-price="250">
 
                         <div class="category-icon">
                             <img src="images/pizza.jpg" alt="Pizza">
@@ -78,7 +84,7 @@
 
 
                     <!-- Burgers -->
-                    <div class="category-card" data-category="burger">
+                    <div class="category-card" data-category="burger" data-price="150">
 
                         <div class="category-icon">
                             <img src="images/burger.jpg" alt="Burger">
@@ -96,7 +102,7 @@
 
 
                     <!-- Noodles -->
-                    <div class="category-card" data-category="noodles">
+                    <div class="category-card" data-category="noodles" data-price="180">
 
                         <div class="category-icon">
                             <img src="images/noodles.jpg" alt="Noodles">
@@ -114,7 +120,7 @@
 
 
                     <!-- Biryani -->
-                    <div class="category-card" data-category="biryani">
+                    <div class="category-card" data-category="biryani" data-price="220">
 
                         <div class="category-icon">
                             <img src="images/biryani.jpg" alt="Biryani">
@@ -132,7 +138,7 @@
 
 
                     <!-- Mexican -->
-                    <div class="category-card" data-category="mexican">
+                    <div class="category-card" data-category="mexican" data-price="200">
 
                         <div class="category-icon">
                             <img src="images/ mexican.jpg" alt="Mexican Food">
@@ -150,7 +156,7 @@
 
 
                     <!-- Desserts -->
-                    <div class="category-card" data-category="dessert">
+                    <div class="category-card" data-category="dessert" data-price="120">
 
                         <div class="category-icon">
                             <img src="images/dessert.jpg" alt="Desserts">
@@ -221,13 +227,26 @@
 
         if (restaurant) {
             const cards = document.querySelectorAll('.category-card');
-            cards.forEach(function(card) {
+            cards.forEach(card => {
                 if (card.dataset.category === restaurant) {
                     card.style.display = '';
                 } else {
                     card.style.display = 'none';
                 }
             });
+        }
+
+        function sortByPrice(order) {
+            const grid = document.querySelector('.category-grid');
+            const cards = Array.from(grid.querySelectorAll('.category-card'));
+            cards.sort((a, b) => {
+                if (order === 'low') {
+                    return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                } else {
+                    return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                }
+            });
+            cards.forEach(card => grid.appendChild(card));
         }
     </script>
 

@@ -107,7 +107,7 @@ function placeOrder() {
     let deliveryTimeStr = deliveryTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     
     // Calculate total
-    let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) - discountApplied;
     
     
     let loggedInUser = localStorage.getItem("loggedInUser");
@@ -131,6 +131,17 @@ function placeOrder() {
         orderDetails.style.display = "none";
     }
     
+    // Save order to history before clearing cart
+    let orderHistory = JSON.parse(localStorage.getItem("foodrushOrders") || "[]");
+    orderHistory.push({
+        orderId: orderId,
+        items: itemsList,
+        total: total,
+        deliveryTime: deliveryTimeStr,
+        date: new Date().toLocaleString()
+    });
+    localStorage.setItem("foodrushOrders", JSON.stringify(orderHistory));
+
     // Send complete order details via email
     sendOrderEmail(orderId, deliveryTimeStr, total, itemsList, userEmail);
     
@@ -192,4 +203,33 @@ function clearCart() {
     clearSuccessMessage();
     showCart();
     updateCartCount();
+}
+
+// Coupon System
+let discountApplied = 0;
+
+function applyCoupon() {
+    let code = document.getElementById("coupon-input").value.trim().toUpperCase();
+    let message = document.getElementById("coupon-message");
+    let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+    if (!code) {
+        message.textContent = "Please enter a coupon code.";
+        message.style.color = "red";
+        return;
+    }
+
+    if (code === "SAVE10" && total >= 100) {
+        discountApplied = total * 0.10;
+        message.textContent = "Coupon applied! You saved ₹" + Math.round(discountApplied);
+        message.style.color = "#28a745";
+    } else if (code === "FLAT50" && total >= 200) {
+        discountApplied = 50;
+        message.textContent = "Coupon applied! You saved ₹50";
+        message.style.color = "#28a745";
+    } else {
+        discountApplied = 0;
+        message.textContent = "Invalid or minimum order not met.";
+        message.style.color = "red";
+    }
 }
