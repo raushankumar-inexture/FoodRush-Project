@@ -51,76 +51,82 @@ document.getElementById("offer-image").src =
 console.log(selectedOffer);
 
 
-    // Search Functionality
-    function searchFood() {
-        let input = document.getElementById("search-input");
-        let message = document.getElementById("search-message");
-        let query = input.value.trim().toLowerCase();
+// Search Functionality
+function searchFood() {
+    let input = document.getElementById("search-input");
+    let message = document.getElementById("search-message");
+    let query = input.value.trim().toLowerCase();
 
-        if (!query) return;
-
+    // If search box is empty, hide the message and Explore Food button
+    if (!query) {
         message.style.display = "none";
-        document.getElementById("explore-btn").style.display = "none";
-
         message.textContent = "";
-
-        let restaurants = [
-            "italian corner", "burger house", "spice kitchen",
-            "pizza palace", "burger barn", "noodle ninja",
-            "taco town", "sweet dreams"
-        ];
-
-        let foodCategories = [
-            { name: "pizza", param: "pizza" },
-            { name: "burger", param: "burger" },
-            { name: "noodle", param: "noodles" },
-            { name: "biryani", param: "biryani" },
-            { name: "mexican", param: "mexican" },
-            { name: "dessert", param: "dessert" }
-        ];
-
-        // Step 1: Check exact restaurant match
-        for (let i = 0; i < restaurants.length; i++) {
-            if (restaurants[i] === query) {
-                window.location.href = "Restaurants.html?search=" + query;
-                return;
-            }
-        }
-
-        // Step 2: Check exact food match
-        for (let j = 0; j < foodCategories.length; j++) {
-            if (foodCategories[j].name === query) {
-                window.location.href = "categories.html?restaurant=" + foodCategories[j].param;
-                return;
-            }
-        }
-
-        // Step 3: Check partial restaurant match
-        for (let i = 0; i < restaurants.length; i++) {
-            if (restaurants[i].indexOf(query) !== -1 || query.indexOf(restaurants[i]) !== -1) {
-                window.location.href = "Restaurants.html?search=" + query;
-                return;
-            }
-        }
-
-        // Step 4: Check partial food match
-        for (let j = 0; j < foodCategories.length; j++) {
-            if (foodCategories[j].name.indexOf(query) !== -1 || query.indexOf(foodCategories[j].name) !== -1) {
-                window.location.href = "categories.html?restaurant=" + foodCategories[j].param;
-                return;
-            }
-        }
-
-        message.style.display = "block";
-        message.textContent = "No food or restaurant found.";
-        message.style.color = "red";
-        message.style.marginTop = "10px";
-
-        document.getElementById("explore-btn").style.display = "inline-block";
+        document.getElementById("explore-btn").style.display = "none";
+        return;
     }
 
+    message.style.display = "none";
+    document.getElementById("explore-btn").style.display = "none";
 
-    // Hamburger menu
+    message.textContent = "";
+
+    let restaurants = [
+        "italian corner", "burger house", "spice kitchen",
+        "pizza palace", "burger barn", "noodle ninja",
+        "taco town", "sweet dreams"
+    ];
+
+    let foodCategories = [
+        { name: "pizza", param: "pizza" },
+        { name: "burger", param: "burger" },
+        { name: "noodle", param: "noodles" },
+        { name: "biryani", param: "biryani" },
+        { name: "mexican", param: "mexican" },
+        { name: "dessert", param: "dessert" }
+    ];
+
+    // Step 1: Check exact restaurant match
+    for (let i = 0; i < restaurants.length; i++) {
+        if (restaurants[i] === query) {
+            window.location.href = "Restaurants.html?search=" + query;
+            return;
+        }
+    }
+
+    // Step 2: Check exact food match
+    for (let j = 0; j < foodCategories.length; j++) {
+        if (foodCategories[j].name === query) {
+            window.location.href = "categories.html?restaurant=" + foodCategories[j].param;
+            return;
+        }
+    }
+
+    // Step 3: Check partial restaurant match
+    for (let i = 0; i < restaurants.length; i++) {
+        if (restaurants[i].indexOf(query) !== -1 || query.indexOf(restaurants[i]) !== -1) {
+            window.location.href = "Restaurants.html?search=" + query;
+            return;
+        }
+    }
+
+    // Step 4: Check partial food match
+    for (let j = 0; j < foodCategories.length; j++) {
+        if (foodCategories[j].name.indexOf(query) !== -1 || query.indexOf(foodCategories[j].name) !== -1) {
+            window.location.href = "categories.html?restaurant=" + foodCategories[j].param;
+            return;
+        }
+    }
+
+    message.style.display = "block";
+    message.textContent = "No food or restaurant found.";
+    message.style.color = "red";
+    message.style.marginTop = "10px";
+
+    document.getElementById("explore-btn").style.display = "inline-block";
+}
+
+
+// Hamburger menu
 let menuBtn = document.getElementById("menu-btn");
 let navbar = document.getElementById("navbar");
 
@@ -160,11 +166,24 @@ document.addEventListener("DOMContentLoaded", function() {
     checkAuthState();
 
     let searchInput = document.getElementById("search-input");
+
     if (searchInput) {
+
         searchInput.addEventListener("keydown", function(e) {
             if (e.key === "Enter") {
                 searchFood();
             }
+        });
+
+        // Hide message when the user clears the search box
+        searchInput.addEventListener("input", function() {
+
+            if (searchInput.value.trim() === "") {
+                document.getElementById("search-message").style.display = "none";
+                document.getElementById("search-message").textContent = "";
+                document.getElementById("explore-btn").style.display = "none";
+            }
+
         });
     }
 
