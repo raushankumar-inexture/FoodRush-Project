@@ -39,7 +39,6 @@
 
     </header>
 
-
     <!-- Categories Page -->
     <main>
 
@@ -61,7 +60,7 @@
                 <div class="category-grid">
 
                     <!-- Pizza -->
-                    <div class="category-card">
+                    <div class="category-card" data-category="pizza">
 
                         <div class="category-icon">
                             <img src="images/pizza.jpg" alt="Pizza">
@@ -79,7 +78,7 @@
 
 
                     <!-- Burgers -->
-                    <div class="category-card">
+                    <div class="category-card" data-category="burger">
 
                         <div class="category-icon">
                             <img src="images/burger.jpg" alt="Burger">
@@ -97,7 +96,7 @@
 
 
                     <!-- Noodles -->
-                    <div class="category-card">
+                    <div class="category-card" data-category="noodles">
 
                         <div class="category-icon">
                             <img src="images/noodles.jpg" alt="Noodles">
@@ -115,7 +114,7 @@
 
 
                     <!-- Biryani -->
-                    <div class="category-card">
+                    <div class="category-card" data-category="biryani">
 
                         <div class="category-icon">
                             <img src="images/biryani.jpg" alt="Biryani">
@@ -133,7 +132,7 @@
 
 
                     <!-- Mexican -->
-                    <div class="category-card">
+                    <div class="category-card" data-category="mexican">
 
                         <div class="category-icon">
                             <img src="images/ mexican.jpg" alt="Mexican Food">
@@ -151,7 +150,7 @@
 
 
                     <!-- Desserts -->
-                    <div class="category-card">
+                    <div class="category-card" data-category="dessert">
 
                         <div class="category-icon">
                             <img src="images/dessert.jpg" alt="Desserts">
@@ -174,7 +173,6 @@
         </section>
 
     </main>
-
 
     <!-- Footer -->
     <footer class="footer">
@@ -217,6 +215,21 @@
 
     </footer>
 
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const restaurant = params.get('restaurant');
+
+        if (restaurant) {
+            const cards = document.querySelectorAll('.category-card');
+            cards.forEach(function(card) {
+                if (card.dataset.category === restaurant) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 
     <script src="cart.js"></script>
 

@@ -1098,6 +1098,11 @@ input {
 }
 
 
+a.category-card {
+    display: block;
+}
+
+
 /*
    Add to Cart Button
 */
