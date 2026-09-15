@@ -47,36 +47,80 @@ function updateCartCount() {
     }
 }
 
+function decreaseQuantity(name) {
+    let item = cart.find(food => food.name === name);
+    if (item) {
+        item.quantity--;
+        if (item.quantity <= 0) {
+            cart = cart.filter(food => food.name !== name);
+        }
+    }
+    saveCart();
+    showCart();
+    updateCartCount();
+}
+
+function removeItem(name) {
+    cart = cart.filter(food => food.name !== name);
+    saveCart();
+    showCart();
+    updateCartCount();
+}
+
 function showCart() {
     let cartItems = document.getElementById("cart-items");
     let cartTotal = document.getElementById("cart-total");
+    let summarySubtotal = document.getElementById("summary-subtotal");
+    let summaryDiscount = document.getElementById("summary-discount");
+    let summaryTotal = document.getElementById("summary-total");
 
-    if (!cartItems || !cartTotal) return;
+    if (!cartItems) return;
 
     cartItems.innerHTML = "";
 
-    let total = 0;
-
     if (cart.length === 0) {
-        cartItems.innerHTML = "<p>Your cart is empty.</p>";
-    } else {
-        cart.forEach(function(item) {
-            let itemTotal = item.price * item.quantity;
-            total = total + itemTotal;
-
-            cartItems.innerHTML += `
-                <div class="cart-item">
-                    <span>${item.name}</span>
-                    <span>
-                        ${item.quantity} × ₹${item.price}
-                        = ₹${itemTotal}
-                    </span>
-                </div>
-            `;
-        });
+        cartItems.innerHTML = `<div style="padding:40px; text-align:center; color:#999; font-size:16px;">Your cart is empty.</div>`;
+        if (summarySubtotal) summarySubtotal.textContent = "₹0";
+        if (summaryDiscount) summaryDiscount.textContent = "-₹0";
+        if (summaryTotal) summaryTotal.textContent = "₹0";
+        if (cartTotal) cartTotal.textContent = "0";
+        return;
     }
 
-    cartTotal.innerText = total;
+    let subtotal = 0;
+
+    cart.forEach(function(item) {
+        let itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+
+        let row = document.createElement("div");
+        row.style.cssText = "display:flex; align-items:center; justify-content:space-between; padding:12px 15px; border-bottom:1px solid #eee; flex-wrap:wrap; gap:10px;";
+        
+        row.innerHTML = `
+            <div style="flex:1; min-width:120px;">
+                <div style="font-weight:bold; color:#333; font-size:15px;">${item.name}</div>
+                <div style="color:#888; font-size:13px;">₹${item.price} each</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <button onclick="decreaseQuantity('${item.name}')" style="width:28px; height:28px; border:1px solid #ddd; background:white; border-radius:4px; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center;">−</button>
+                <span style="font-weight:bold; min-width:20px; text-align:center;">${item.quantity}</span>
+                <button onclick="addToCart('${item.name}', ${item.price})" style="width:28px; height:28px; border:1px solid #ddd; background:white; border-radius:4px; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center;">+</button>
+            </div>
+            <div style="font-weight:bold; color:#333; min-width:80px; text-align:right;">₹${itemTotal}</div>
+            <button onclick="removeItem('${item.name}')" style="background:none; border:none; color:#999; cursor:pointer; font-size:18px; padding:0 5px;" title="Remove">×</button>
+        `;
+        
+        cartItems.appendChild(row);
+    });
+
+    let discount = discountApplied || 0;
+    let finalTotal = subtotal - discount;
+
+    if (summarySubtotal) summarySubtotal.textContent = "₹" + subtotal;
+    if (summaryDiscount) summaryDiscount.textContent = "-₹" + discount;
+    if (summaryTotal) summaryTotal.textContent = "₹" + finalTotal;
+    if (cartTotal) cartTotal.textContent = finalTotal;
+    
     updateCartCount();
 }
 
