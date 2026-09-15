@@ -1,4 +1,3 @@
-
 let cart = [];
 
 // EmailJS Configuration - SIGN UP at emailjs.com and replace these values
@@ -195,6 +194,29 @@ document.addEventListener("DOMContentLoaded", function() {
     loadCart();
     clearSuccessMessage();
     showCart();
+
+    let first50Coupon = document.getElementById("first50-coupon");
+    if (first50Coupon && hasPreviousOrders()) {
+        first50Coupon.style.display = "none";
+    }
+
+    let availableCoupons = getAvailableCoupons();
+    let regularCoupons = document.querySelectorAll(".regular-coupon");
+    regularCoupons.forEach(function(card) {
+        let code = card.getAttribute("data-coupon");
+        if (availableCoupons.includes(code)) {
+            card.style.display = "inline-block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    if (availableCoupons.length === 0) {
+        let noOffers = document.getElementById("no-offers-message");
+        if (noOffers) {
+            noOffers.style.display = "block";
+        }
+    }
 });
 
 function clearCart() {
@@ -204,8 +226,33 @@ function clearCart() {
     showCart();
     updateCartCount();
 }
+
 // Coupon System
 let discountApplied = 0;
+
+function hasPreviousOrders() {
+    let orders = JSON.parse(localStorage.getItem("foodrushOrders") || "[]");
+    return orders.length > 0;
+}
+
+function getAvailableCoupons() {
+    let day = new Date().getDay();
+    let available = [];
+    if (day === 2) available.push("SAVE10");
+    if (day === 6) available.push("SAVE30");
+    if (day === 0) available.push("SAVE50");
+    return available;
+}
+
+function isCouponAvailableToday(code) {
+    if (code === "FIRST50") return true;
+    return getAvailableCoupons().includes(code);
+}
+
+function useCoupon(code) {
+    let input = document.getElementById("coupon-input");
+    input.value = code;
+}
 
 function applyCoupon() {
     let code = document.getElementById("coupon-input").value.trim().toUpperCase();
@@ -214,6 +261,19 @@ function applyCoupon() {
 
     if (!code) {
         message.textContent = "Please enter a coupon code.";
+        message.style.color = "red";
+        return;
+    }
+
+    if (code === "FIRST50" && !hasPreviousOrders()) {
+        discountApplied = total * 0.50;
+        message.textContent = "Coupon applied! You saved ₹" + Math.round(discountApplied);
+        message.style.color = "#28a745";
+        return;
+    }
+
+    if (!isCouponAvailableToday(code)) {
+        message.textContent = "This coupon is not available today.";
         message.style.color = "red";
         return;
     }
@@ -238,7 +298,4 @@ function applyCoupon() {
         message.textContent = "Invalid or minimum order not met.";
         message.style.color = "red";
     }
-
-
-
 }
