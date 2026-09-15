@@ -122,6 +122,11 @@ function showCart() {
     if (cartTotal) cartTotal.textContent = finalTotal;
     
     updateCartCount();
+
+    let couponSection = document.getElementById("coupon-section");
+    if (couponSection) {
+        couponSection.style.display = cart.length > 0 ? "block" : "none";
+    }
 }
 
 function clearSuccessMessage() {
