@@ -168,7 +168,11 @@ function placeOrder() {
             Order ID: <strong>${orderId}</strong><br>
             Estimated Delivery: <strong>${deliveryTimeStr}</strong>`;
     }
-    
+
+    let couponSection = document.getElementById("coupon-section");
+    if (couponSection) {
+        couponSection.style.display = "none";
+    }
     
     if (orderDetails) {
         orderDetails.style.display = "none";
