@@ -190,7 +190,9 @@ function placeOrder() {
         items: itemsList,
         total: total,
         deliveryTime: deliveryTimeStr,
-        date: new Date().toLocaleString()
+        date: new Date().toLocaleString(),
+        status: "Order Placed",
+        statusTime: Date.now()
     });
     localStorage.setItem("foodrushOrders", JSON.stringify(orderHistory));
 
@@ -242,11 +244,43 @@ function sendOrderEmail(orderId, deliveryTime, total, itemsList, userEmail) {
         });
 }
 
+// Order Status Simulation
+function updateOrderStatus() {
+    let orders = JSON.parse(localStorage.getItem("foodrushOrders") || "[]");
+    let now = Date.now();
+    let changed = false;
+
+    orders.forEach(function(order) {
+        if (!order.statusTime) order.statusTime = now;
+        let elapsed = now - order.statusTime;
+        let status = order.status;
+
+        if (status === "Order Placed" && elapsed >= 30000) {
+            order.status = "Preparing";
+            changed = true;
+        } else if (status === "Preparing" && elapsed >= 60000) {
+            order.status = "Ready";
+            changed = true;
+        } else if (status === "Ready" && elapsed >= 90000) {
+            order.status = "Out for Delivery";
+            changed = true;
+        } else if (status === "Out for Delivery" && elapsed >= 120000) {
+            order.status = "Delivered";
+            changed = true;
+        }
+    });
+
+    if (changed) {
+        localStorage.setItem("foodrushOrders", JSON.stringify(orders));
+    }
+}
+
 // Initialize cart on page load
 document.addEventListener("DOMContentLoaded", function() {
     loadCart();
     clearSuccessMessage();
     showCart();
+    updateOrderStatus();
 
     let first50Coupon = document.getElementById("first50-coupon");
     if (first50Coupon && hasPreviousOrders()) {
@@ -270,6 +304,8 @@ document.addEventListener("DOMContentLoaded", function() {
             noOffers.style.display = "block";
         }
     }
+
+    renderAddresses();
 });
 
 function clearCart() {
@@ -278,6 +314,116 @@ function clearCart() {
     clearSuccessMessage();
     showCart();
     updateCartCount();
+}
+
+// Address Management
+function loadAddresses() {
+    return JSON.parse(localStorage.getItem("foodrushAddresses") || "[]");
+}
+
+function saveAddressToStorage(addresses) {
+    localStorage.setItem("foodrushAddresses", JSON.stringify(addresses));
+}
+
+function saveAddress() {
+    let name = document.getElementById("addr-name").value.trim();
+    let phone = document.getElementById("addr-phone").value.trim();
+    let street = document.getElementById("addr-street").value.trim();
+    let city = document.getElementById("addr-city").value.trim();
+    let pincode = document.getElementById("addr-pincode").value.trim();
+
+    if (!name || !phone || !street || !city || !pincode) {
+        alert("Please fill all address fields.");
+        return;
+    }
+
+    let addresses = loadAddresses();
+    addresses.push({ name, phone, street, city, pincode });
+    saveAddressToStorage(addresses);
+
+    hideAddressForm();
+    renderAddresses();
+}
+
+function showAddressForm() {
+    document.getElementById("address-form").style.display = "block";
+    document.getElementById("addr-name").value = "";
+    document.getElementById("addr-phone").value = "";
+    document.getElementById("addr-street").value = "";
+    document.getElementById("addr-city").value = "";
+    document.getElementById("addr-pincode").value = "";
+}
+
+function hideAddressForm() {
+    document.getElementById("address-form").style.display = "none";
+}
+
+function selectAddress(index) {
+    let addresses = loadAddresses();
+    localStorage.setItem("foodrushSelectedAddress", index);
+    renderAddresses();
+}
+
+function renderAddresses() {
+    let addresses = loadAddresses();
+    let selectedIndex = localStorage.getItem("foodrushSelectedAddress");
+    let list = document.getElementById("address-list");
+    let display = document.getElementById("selected-address-display");
+
+    if (!list) return;
+
+    if (addresses.length === 0) {
+        list.innerHTML = "<p style='color:#999; font-size:14px;'>No saved addresses.</p>";
+        if (display) display.style.display = "none";
+        return;
+    }
+
+    let html = "";
+    addresses.forEach(function(addr, index) {
+        let isSelected = (selectedIndex == index);
+        html += "<div style='padding:10px; margin-bottom:8px; border:1px solid " + (isSelected ? "#28a745" : "#ddd") + "; border-radius:6px; cursor:pointer; background-color:" + (isSelected ? "#f0fff4" : "#fff") + ";' onclick='selectAddress(" + index + ")'>";
+        html += "<input type='radio' name='address' " + (isSelected ? "checked" : "") + " style='margin-right:8px;'>";
+        html += "<strong>" + addr.name + "</strong> - " + addr.phone + "<br>";
+        html += "<span style='color:#666; font-size:13px;'>" + addr.street + ", " + addr.city + " - " + addr.pincode + "</span>";
+        html += "</div>";
+    });
+    list.innerHTML = html;
+
+    if (selectedIndex !== null && addresses[selectedIndex]) {
+        let selected = addresses[selectedIndex];
+        if (display) {
+            display.textContent = "Delivering to: " + selected.street + ", " + selected.city + " - " + selected.pincode;
+            display.style.display = "block";
+        }
+    } else if (display) {
+        display.style.display = "none";
+    }
+}
+
+// Reorder
+let itemPrices = {
+    "Pizza": 250,
+    "Burger": 150,
+    "Noodles": 180,
+    "Biryani": 220,
+    "Mexican Food": 200,
+    "Dessert": 120
+};
+
+function reorder(itemsString) {
+    let items = itemsString.split(", ");
+    items.forEach(function(item) {
+        let match = item.match(/^(.+?) \(x(\d+)\)$/);
+        if (match) {
+            let name = match[1];
+            let qty = parseInt(match[2]);
+            let price = itemPrices[name] || 0;
+            for (let i = 0; i < qty; i++) {
+                addToCart(name, price);
+            }
+        }
+    });
+    alert("Items added to cart!");
 }
 
 // Coupon System

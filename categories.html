@@ -35,6 +35,8 @@
                 Cart <span id="cart-count" style="margin-left: 5px;">0</span>
             </a>
 
+            <button onclick="toggleTheme()" style="background:none; border:none; font-size:20px; cursor:pointer; margin-left:10px;" title="Toggle theme">🌓</button>
+
         </div>
 
     </header>
@@ -62,11 +64,36 @@
                     <button onclick="sortByPrice('high')" style="padding:10px 20px; margin:5px; border:1px solid #ff5a36; background-color:#ffffff; color:#ff5a36; border-radius:6px; cursor:pointer; font-size:14px; font-weight:bold;">High to Low</button>
                 </div>
 
+                <!-- Filters -->
+                <div style="margin-bottom:20px; text-align:center;">
+                    <select id="filter-cuisine" onchange="applyFilters()" style="padding:8px 12px; border:1px solid #ff5a36; border-radius:6px; font-size:13px; color:#333;">
+                        <option value="all">All Cuisines</option>
+                        <option value="Italian">Italian</option>
+                        <option value="American">American</option>
+                        <option value="Asian">Asian</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Desserts">Desserts</option>
+                    </select>
+                    <select id="filter-rating" onchange="applyFilters()" style="padding:8px 12px; border:1px solid #ff5a36; border-radius:6px; font-size:13px; color:#333;">
+                        <option value="0">All Ratings</option>
+                        <option value="4.7">4.7 & above</option>
+                        <option value="4.5">4.5 & above</option>
+                    </select>
+                    <select id="filter-price" onchange="applyFilters()" style="padding:8px 12px; border:1px solid #ff5a36; border-radius:6px; font-size:13px; color:#333;">
+                        <option value="all">All Prices</option>
+                        <option value="0-200">Under ₹200</option>
+                        <option value="200-250">₹200 - ₹250</option>
+                        <option value="250+">Above ₹250</option>
+                    </select>
+                    <button onclick="resetFilters()" style="padding:8px 16px; margin:5px; border:1px solid #ff5a36; background-color:#ffffff; color:#ff5a36; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold;">Reset</button>
+                </div>
+
                 <!-- Food Items -->
                 <div class="category-grid">
 
                     <!-- Pizza -->
-                    <div class="category-card" data-category="pizza" data-price="250">
+                    <div class="category-card" data-category="pizza" data-price="250" data-cuisine="Italian" data-rating="4.8">
 
                         <div class="category-icon">
                             <img src="images/pizza.jpg" alt="Pizza">
@@ -84,7 +111,7 @@
 
 
                     <!-- Burgers -->
-                    <div class="category-card" data-category="burger" data-price="150">
+                    <div class="category-card" data-category="burger" data-price="150" data-cuisine="American" data-rating="4.6">
 
                         <div class="category-icon">
                             <img src="images/burger.jpg" alt="Burger">
@@ -102,7 +129,7 @@
 
 
                     <!-- Noodles -->
-                    <div class="category-card" data-category="noodles" data-price="180">
+                    <div class="category-card" data-category="noodles" data-price="180" data-cuisine="Asian" data-rating="4.7">
 
                         <div class="category-icon">
                             <img src="images/noodles.jpg" alt="Noodles">
@@ -120,7 +147,7 @@
 
 
                     <!-- Biryani -->
-                    <div class="category-card" data-category="biryani" data-price="220">
+                    <div class="category-card" data-category="biryani" data-price="220" data-cuisine="Indian" data-rating="4.5">
 
                         <div class="category-icon">
                             <img src="images/biryani.jpg" alt="Biryani">
@@ -138,7 +165,7 @@
 
 
                     <!-- Mexican -->
-                    <div class="category-card" data-category="mexican" data-price="200">
+                    <div class="category-card" data-category="mexican" data-price="200" data-cuisine="Mexican" data-rating="4.4">
 
                         <div class="category-icon">
                             <img src="images/ mexican.jpg" alt="Mexican Food">
@@ -156,7 +183,7 @@
 
 
                     <!-- Desserts -->
-                    <div class="category-card" data-category="dessert" data-price="120">
+                    <div class="category-card" data-category="dessert" data-price="120" data-cuisine="Desserts" data-rating="4.9">
 
                         <div class="category-icon">
                             <img src="images/dessert.jpg" alt="Desserts">
@@ -248,8 +275,47 @@
             });
             cards.forEach(card => grid.appendChild(card));
         }
+
+        function applyFilters() {
+            let cuisine = document.getElementById("filter-cuisine").value;
+            let rating = parseFloat(document.getElementById("filter-rating").value);
+            let priceRange = document.getElementById("filter-price").value;
+
+            const cards = document.querySelectorAll('.category-card');
+            cards.forEach(card => {
+                let cardCuisine = card.dataset.cuisine;
+                let cardRating = parseFloat(card.dataset.rating);
+                let cardPrice = parseInt(card.dataset.price);
+
+                let show = true;
+
+                if (cuisine !== "all" && cardCuisine !== cuisine) {
+                    show = false;
+                }
+
+                if (rating > 0 && cardRating < rating) {
+                    show = false;
+                }
+
+                if (priceRange !== "all") {
+                    if (priceRange === "0-200" && cardPrice >= 200) show = false;
+                    if (priceRange === "200-250" && (cardPrice < 200 || cardPrice > 250)) show = false;
+                    if (priceRange === "250+" && cardPrice <= 250) show = false;
+                }
+
+                card.style.display = show ? '' : 'none';
+            });
+        }
+
+        function resetFilters() {
+            document.getElementById("filter-cuisine").value = "all";
+            document.getElementById("filter-rating").value = "0";
+            document.getElementById("filter-price").value = "all";
+            applyFilters();
+        }
     </script>
 
+    <script src="theme.js"></script>
     <script src="cart.js"></script>
 
 </body>

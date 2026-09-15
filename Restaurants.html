@@ -52,6 +52,8 @@
 
             </a>
 
+            <button onclick="toggleTheme()" style="background:none; border:none; font-size:20px; cursor:pointer; margin-left:10px;" title="Toggle theme">🌓</button>
+
         </div>
 
     </header>
@@ -80,9 +82,13 @@
                 <!-- Restaurant Items -->
                 <div class="category-grid">
 
+                    <div style="margin-bottom:15px; text-align:center;">
+                        <button onclick="showAllRestaurants()" style="padding:8px 16px; margin:5px; border:1px solid #ff5a36; background-color:#ffffff; color:#ff5a36; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold;">All Restaurants</button>
+                        <button onclick="showFavorites()" style="padding:8px 16px; margin:5px; border:1px solid #ff5a36; background-color:#ffffff; color:#ff5a36; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold;">❤️ Favorites</button>
+                    </div>
 
                     <!-- Restaurant 1 -->
-                    <a href="categories.html?restaurant=pizza" class="category-card" data-search="italian corner">
+                    <a href="categories.html?restaurant=pizza" class="category-card" data-search="italian corner" data-name="Italian Corner">
 
                         <div class="restaurant-image">
                             🍕
@@ -90,6 +96,8 @@
 
 
                         <div class="restaurant-content">
+
+                            <button onclick="event.preventDefault(); toggleFavorite('Italian Corner')" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer;" title="Add to favorites">♡</button>
 
                             <span class="rating">
                                 ★ 4.8
@@ -125,7 +133,7 @@
 
 
                     <!-- Restaurant 2 -->
-                    <a href="categories.html?restaurant=burger" class="category-card" data-search="burger house">
+                    <a href="categories.html?restaurant=burger" class="category-card" data-search="burger house" data-name="Burger House">
 
                         <div class="restaurant-image">
                             🍔
@@ -133,6 +141,8 @@
 
 
                         <div class="restaurant-content">
+
+                            <button onclick="event.preventDefault(); toggleFavorite('Burger House')" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer;" title="Add to favorites">♡</button>
 
                             <span class="rating">
                                 ★ 4.6
@@ -168,7 +178,7 @@
 
 
                     <!-- Restaurant 3 -->
-                    <a href="categories.html?restaurant=biryani" class="category-card" data-search="spice kitchen">
+                    <a href="categories.html?restaurant=biryani" class="category-card" data-search="spice kitchen" data-name="Spice Kitchen">
 
                         <div class="restaurant-image">
                             🍛
@@ -176,6 +186,8 @@
 
 
                         <div class="restaurant-content">
+
+                            <button onclick="event.preventDefault(); toggleFavorite('Spice Kitchen')" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer;" title="Add to favorites">♡</button>
 
                             <span class="rating">
                                 ★ 4.7
@@ -211,7 +223,7 @@
 
 
                     <!-- Restaurant 4 -->
-                    <a href="categories.html?restaurant=pizza" class="category-card" data-search="pizza palace">
+                    <a href="categories.html?restaurant=pizza" class="category-card" data-search="pizza palace" data-name="Pizza Palace">
 
                         <div class="restaurant-image">
                             🍕
@@ -219,6 +231,8 @@
 
 
                         <div class="restaurant-content">
+
+                            <button onclick="event.preventDefault(); toggleFavorite('Pizza Palace')" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer;" title="Add to favorites">♡</button>
 
                             <span class="rating">
                                 ★ 4.5
@@ -254,7 +268,7 @@
 
 
                     <!-- Restaurant 5 -->
-                    <a href="categories.html?restaurant=burger" class="category-card" data-search="burger barn">
+                    <a href="categories.html?restaurant=burger" class="category-card" data-search="burger barn" data-name="Burger Barn">
 
                         <div class="restaurant-image">
                             🍔
@@ -262,6 +276,8 @@
 
 
                         <div class="restaurant-content">
+
+                            <button onclick="event.preventDefault(); toggleFavorite('Burger Barn')" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer;" title="Add to favorites">♡</button>
 
                             <span class="rating">
                                 ★ 4.8
@@ -297,7 +313,7 @@
 
 
                     <!-- Restaurant 6 -->
-                    <a href="categories.html?restaurant=noodles" class="category-card" data-search="noodle ninja">
+                    <a href="categories.html?restaurant=noodles" class="category-card" data-search="noodle ninja" data-name="Noodle Ninja">
 
                         <div class="restaurant-image">
                             🍜
@@ -305,6 +321,8 @@
 
 
                         <div class="restaurant-content">
+
+                            <button onclick="event.preventDefault(); toggleFavorite('Noodle Ninja')" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer;" title="Add to favorites">♡</button>
 
                             <span class="rating">
                                 ★ 4.6
@@ -340,7 +358,7 @@
 
 
                     <!-- Restaurant 7 -->
-                    <a href="categories.html?restaurant=mexican" class="category-card" data-search="taco town">
+                    <a href="categories.html?restaurant=mexican" class="category-card" data-search="taco town" data-name="Taco Town">
 
                         <div class="restaurant-image">
                             🌮
@@ -348,6 +366,8 @@
 
 
                         <div class="restaurant-content">
+
+                            <button onclick="event.preventDefault(); toggleFavorite('Taco Town')" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer;" title="Add to favorites">♡</button>
 
                             <span class="rating">
                                 ★ 4.4
@@ -383,7 +403,7 @@
 
 
                     <!-- Restaurant 8 -->
-                    <a href="categories.html?restaurant=dessert" class="category-card" data-search="sweet dreams">
+                    <a href="categories.html?restaurant=dessert" class="category-card" data-search="sweet dreams" data-name="Sweet Dreams">
 
                         <div class="restaurant-image">
                             🍦
@@ -391,6 +411,8 @@
 
 
                         <div class="restaurant-content">
+
+                            <button onclick="event.preventDefault(); toggleFavorite('Sweet Dreams')" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer;" title="Add to favorites">♡</button>
 
                             <span class="rating">
                                 ★ 4.9
@@ -507,8 +529,64 @@
                 document.getElementById("restaurant-search-message").style.marginTop = "10px";
             }
         }
+
+        function showAllRestaurants() {
+            const cards = document.querySelectorAll('.category-card');
+            cards.forEach(card => {
+                card.style.display = '';
+            });
+            document.getElementById("restaurant-search-message").textContent = "";
+        }
+
+        function showFavorites() {
+            let favorites = JSON.parse(localStorage.getItem("foodrushFavorites") || "[]");
+            const cards = document.querySelectorAll('.category-card');
+            let found = false;
+            cards.forEach(function(card) {
+                if (favorites.includes(card.dataset.name)) {
+                    card.style.display = '';
+                    found = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            if (!found) {
+                document.getElementById("restaurant-search-message").textContent = "No favorites yet.";
+                document.getElementById("restaurant-search-message").style.color = "#888";
+                document.getElementById("restaurant-search-message").style.marginTop = "10px";
+            } else {
+                document.getElementById("restaurant-search-message").textContent = "";
+            }
+        }
+
+        function toggleFavorite(name) {
+            let favorites = JSON.parse(localStorage.getItem("foodrushFavorites") || "[]");
+            let index = favorites.indexOf(name);
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(name);
+            }
+            localStorage.setItem("foodrushFavorites", JSON.stringify(favorites));
+            updateFavoriteButtons();
+        }
+
+        function updateFavoriteButtons() {
+            let favorites = JSON.parse(localStorage.getItem("foodrushFavorites") || "[]");
+            document.querySelectorAll('.category-card button[title="Add to favorites"]').forEach(btn => {
+                let card = btn.closest('.category-card');
+                if (card && favorites.includes(card.dataset.name)) {
+                    btn.textContent = '❤️';
+                } else {
+                    btn.textContent = '♡';
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", updateFavoriteButtons);
     </script>
 
+    <script src="theme.js"></script>
     <script src="cart.js"></script>
 
 </body>
