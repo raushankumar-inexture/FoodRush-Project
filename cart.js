@@ -1,4 +1,4 @@
-// Cart functionality - persists across pages using localStorage
+
 let cart = [];
 
 // EmailJS Configuration - SIGN UP at emailjs.com and replace these values
@@ -8,7 +8,7 @@ const EMAILJS_CONFIG = {
     publicKey: "6b6ZPt7N-KzQRSAnY"
 };
 
-// Load cart from localStorage
+// get card from localStorage
 function loadCart() {
     const savedCart = localStorage.getItem("foodrushCart");
     if (savedCart) {
@@ -16,7 +16,7 @@ function loadCart() {
     }
 }
 
-// Save cart to localStorage
+
 function saveCart() {
     localStorage.setItem("foodrushCart", JSON.stringify(cart));
 }
@@ -113,10 +113,10 @@ function placeOrder() {
     let loggedInUser = localStorage.getItem("loggedInUser");
     let userEmail = loggedInUser ? JSON.parse(loggedInUser).email : "guest@example.com";
     
-    // Build order items list
+    
     let itemsList = cart.map(item => `${item.name} (x${item.quantity})`).join(", ");
     
-    // Display simple message on screen (Order ID and delivery time only)
+    
     let successMessage = document.getElementById("success-message");
     let orderDetails = document.getElementById("order-details");
     
@@ -126,12 +126,12 @@ function placeOrder() {
             Estimated Delivery: <strong>${deliveryTimeStr}</strong>`;
     }
     
-    // Hide the detailed order confirmation section
+    
     if (orderDetails) {
         orderDetails.style.display = "none";
     }
     
-    // Save order to history before clearing cart
+    
     let orderHistory = JSON.parse(localStorage.getItem("foodrushOrders") || "[]");
     orderHistory.push({
         orderId: orderId,
@@ -142,7 +142,7 @@ function placeOrder() {
     });
     localStorage.setItem("foodrushOrders", JSON.stringify(orderHistory));
 
-    // Send complete order details via email
+    
     sendOrderEmail(orderId, deliveryTimeStr, total, itemsList, userEmail);
     
     // Clear cart
@@ -162,7 +162,7 @@ function sendOrderEmail(orderId, deliveryTime, total, itemsList, userEmail) {
         message: "Your FoodRush order has been placed successfully."
     };
     
-    // Log to console for testing
+    
     console.log("=== EmailJS Debug ===");
     console.log("Sending email to:", userEmail);
     console.log("Order details:", emailData);
@@ -179,7 +179,7 @@ function sendOrderEmail(orderId, deliveryTime, total, itemsList, userEmail) {
     // Initialize EmailJS with your Public Key
     emailjs.init(EMAILJS_CONFIG.publicKey);
     
-    // Send email using EmailJS
+    
     emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, emailData)
         .then(function(response) {
             console.log("Email sent successfully:", response);
@@ -204,7 +204,6 @@ function clearCart() {
     showCart();
     updateCartCount();
 }
-
 // Coupon System
 let discountApplied = 0;
 
@@ -219,17 +218,27 @@ function applyCoupon() {
         return;
     }
 
-    if (code === "SAVE10" && total >= 100) {
+    if (code === "SAVE10" && total >= 200) {
         discountApplied = total * 0.10;
         message.textContent = "Coupon applied! You saved ₹" + Math.round(discountApplied);
         message.style.color = "#28a745";
-    } else if (code === "FLAT50" && total >= 200) {
-        discountApplied = 50;
-        message.textContent = "Coupon applied! You saved ₹50";
+
+    } else if (code === "SAVE30" && total >= 500) {
+        discountApplied = total * 0.30;
+        message.textContent = "Coupon applied! You saved ₹" + Math.round(discountApplied);
         message.style.color = "#28a745";
+
+    } else if (code === "SAVE50" && total >= 1000) {
+        discountApplied = total * 0.50;
+        message.textContent = "Coupon applied! You saved ₹" + Math.round(discountApplied);
+        message.style.color = "#28a745";
+
     } else {
         discountApplied = 0;
         message.textContent = "Invalid or minimum order not met.";
         message.style.color = "red";
     }
+
+
+
 }
