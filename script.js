@@ -3,27 +3,32 @@ let offers = [
     {
         food: "Pizza",
         discount: "50%",
-        code: "PIZZA50"
+        code: "PIZZA50",
+        category: "pizza"
     },
     {
         food: "Noodles",
         discount: "40%",
-        code: "NOODLES40"
+        code: "NOODLES40",
+        category: "noodles"
     },
     {
         food: "Desserts",
         discount: "30%",
-        code: "SWEET30"
+        code: "SWEET30",
+        category: "dessert"
     },
     {
         food: "Mexican Food",
         discount: "35%",
-        code: "MEXICAN35"
+        code: "MEXICAN35",
+        category: "mexican"
     },
     {
         food: "Biryani",
         discount: "45%",
-        code: "BIRYANI45"
+        code: "BIRYANI45",
+        category: "biryani"
     }
 ];
 
@@ -59,14 +64,14 @@ function renderAllOffers() {
     if (!grid) return;
 
     grid.innerHTML = "";
-    offers.forEach((offer, index) => {
+    offers.forEach((offer) => {
         const card = document.createElement("div");
         card.className = "offer-card";
         card.innerHTML = `
-            <img src="${images[index]}" alt="${offer.food} offer">
+            <img src="${images[offers.indexOf(offer)]}" alt="${offer.food} offer">
             <h3>Get ${offer.discount} OFF on ${offer.food}</h3>
             <p>Use code: <strong>${offer.code}</strong></p>
-            <a href="#" class="primary-btn">Order Now</a>
+            <a href="categories.html?restaurant=${offer.category}" class="primary-btn">Order Now</a>
         `;
         grid.appendChild(card);
     });
