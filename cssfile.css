@@ -1511,3 +1511,61 @@ body.dark-mode .offer-icon {
 body.dark-mode .cart-section {
     background-color: #1a1a1a;
 }
+
+/*
+   Offers Page
+*/
+
+.offers-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.offer-card {
+    flex: 0 0 calc((100% - 40px) / 3);
+    padding: 12px;
+    background-color: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.offer-card img {
+    width: 100%;
+    height: 180px;
+    display: block;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.offer-card h3 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.offer-card p {
+    margin-bottom: 15px;
+    color: #777777;
+    font-size: 14px;
+}
+
+.offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px #dddddd;
+}
+
+@media (max-width: 900px) {
+    .offer-card {
+        flex: 0 0 calc((100% - 20px) / 2);
+    }
+}
+
+@media (max-width: 500px) {
+    .offer-card {
+        flex: 0 0 100%;
+    }
+}

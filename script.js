@@ -54,6 +54,24 @@ setInterval(function() {
     updateOffer();
 }, 30000);
 
+function renderAllOffers() {
+    const grid = document.getElementById("all-offers-grid");
+    if (!grid) return;
+
+    grid.innerHTML = "";
+    offers.forEach((offer, index) => {
+        const card = document.createElement("div");
+        card.className = "offer-card";
+        card.innerHTML = `
+            <img src="${images[index]}" alt="${offer.food} offer">
+            <h3>Get ${offer.discount} OFF on ${offer.food}</h3>
+            <p>Use code: <strong>${offer.code}</strong></p>
+            <a href="#" class="primary-btn">Order Now</a>
+        `;
+        grid.appendChild(card);
+    });
+}
+
 
 // Search Functionality
 function searchFood() {
