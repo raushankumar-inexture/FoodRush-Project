@@ -35,20 +35,24 @@ let images = [
     "images/biryani.jpg"
 ];
 
-let randomNumber = Math.floor(Math.random() * offers.length);
+let currentOfferIndex = 0;
 
-let selectedOffer = offers[randomNumber];
+function updateOffer() {
+    let selectedOffer = offers[currentOfferIndex];
+    document.getElementById("offer-discount").innerHTML =
+        "Get " + selectedOffer.discount + " OFF<br>on " + selectedOffer.food;
+    document.getElementById("offer-code").textContent =
+        selectedOffer.code;
+    document.getElementById("offer-image").src =
+        images[currentOfferIndex];
+}
 
-document.getElementById("offer-discount").innerHTML =
-    "Get " + selectedOffer.discount + " OFF<br>on " + selectedOffer.food;
+updateOffer();
 
-document.getElementById("offer-code").textContent =
-    selectedOffer.code;
-
-document.getElementById("offer-image").src =
-    images[randomNumber];
-
-console.log(selectedOffer);
+setInterval(function() {
+    currentOfferIndex = (currentOfferIndex + 1) % offers.length;
+    updateOffer();
+}, 30000);
 
 
 // Search Functionality
