@@ -1,4 +1,3 @@
-
 let cart = [];
 
 // EmailJS Configuration - SIGN UP at emailjs.com and replace these values
@@ -48,37 +47,86 @@ function updateCartCount() {
     }
 }
 
+function decreaseQuantity(name) {
+    let item = cart.find(food => food.name === name);
+    if (item) {
+        item.quantity--;
+        if (item.quantity <= 0) {
+            cart = cart.filter(food => food.name !== name);
+        }
+    }
+    saveCart();
+    showCart();
+    updateCartCount();
+}
+
+function removeItem(name) {
+    cart = cart.filter(food => food.name !== name);
+    saveCart();
+    showCart();
+    updateCartCount();
+}
+
 function showCart() {
     let cartItems = document.getElementById("cart-items");
     let cartTotal = document.getElementById("cart-total");
+    let summarySubtotal = document.getElementById("summary-subtotal");
+    let summaryDiscount = document.getElementById("summary-discount");
+    let summaryTotal = document.getElementById("summary-total");
 
-    if (!cartItems || !cartTotal) return;
+    if (!cartItems) return;
 
     cartItems.innerHTML = "";
 
-    let total = 0;
-
     if (cart.length === 0) {
-        cartItems.innerHTML = "<p>Your cart is empty.</p>";
-    } else {
-        cart.forEach(function(item) {
-            let itemTotal = item.price * item.quantity;
-            total = total + itemTotal;
-
-            cartItems.innerHTML += `
-                <div class="cart-item">
-                    <span>${item.name}</span>
-                    <span>
-                        ${item.quantity} × ₹${item.price}
-                        = ₹${itemTotal}
-                    </span>
-                </div>
-            `;
-        });
+        cartItems.innerHTML = `<div style="padding:40px; text-align:center; color:#999; font-size:16px;">Your cart is empty.</div>`;
+        if (summarySubtotal) summarySubtotal.textContent = "₹0";
+        if (summaryDiscount) summaryDiscount.textContent = "-₹0";
+        if (summaryTotal) summaryTotal.textContent = "₹0";
+        if (cartTotal) cartTotal.textContent = "0";
+        return;
     }
 
-    cartTotal.innerText = total;
+    let subtotal = 0;
+
+    cart.forEach(function(item) {
+        let itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+
+        let row = document.createElement("div");
+        row.style.cssText = "display:flex; align-items:center; justify-content:space-between; padding:12px 15px; border-bottom:1px solid #eee; flex-wrap:wrap; gap:10px;";
+        
+        row.innerHTML = `
+            <div style="flex:1; min-width:120px;">
+                <div style="font-weight:bold; color:#333; font-size:15px;">${item.name}</div>
+                <div style="color:#888; font-size:13px;">₹${item.price} each</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <button onclick="decreaseQuantity('${item.name}')" style="width:28px; height:28px; border:1px solid #ddd; background:white; border-radius:4px; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center;">−</button>
+                <span style="font-weight:bold; min-width:20px; text-align:center;">${item.quantity}</span>
+                <button onclick="addToCart('${item.name}', ${item.price})" style="width:28px; height:28px; border:1px solid #ddd; background:white; border-radius:4px; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center;">+</button>
+            </div>
+            <div style="font-weight:bold; color:#333; min-width:80px; text-align:right;">₹${itemTotal}</div>
+            <button onclick="removeItem('${item.name}')" style="background:none; border:none; color:#999; cursor:pointer; font-size:18px; padding:0 5px;" title="Remove">×</button>
+        `;
+        
+        cartItems.appendChild(row);
+    });
+
+    let discount = discountApplied || 0;
+    let finalTotal = subtotal - discount;
+
+    if (summarySubtotal) summarySubtotal.textContent = "₹" + subtotal;
+    if (summaryDiscount) summaryDiscount.textContent = "-₹" + discount;
+    if (summaryTotal) summaryTotal.textContent = "₹" + finalTotal;
+    if (cartTotal) cartTotal.textContent = finalTotal;
+    
     updateCartCount();
+
+    let couponSection = document.getElementById("coupon-section");
+    if (couponSection) {
+        couponSection.style.display = cart.length > 0 ? "block" : "none";
+    }
 }
 
 function clearSuccessMessage() {
@@ -125,7 +173,11 @@ function placeOrder() {
             Order ID: <strong>${orderId}</strong><br>
             Estimated Delivery: <strong>${deliveryTimeStr}</strong>`;
     }
-    
+
+    let couponSection = document.getElementById("coupon-section");
+    if (couponSection) {
+        couponSection.style.display = "none";
+    }
     
     if (orderDetails) {
         orderDetails.style.display = "none";
@@ -138,7 +190,9 @@ function placeOrder() {
         items: itemsList,
         total: total,
         deliveryTime: deliveryTimeStr,
-        date: new Date().toLocaleString()
+        date: new Date().toLocaleString(),
+        status: "Order Placed",
+        statusTime: Date.now()
     });
     localStorage.setItem("foodrushOrders", JSON.stringify(orderHistory));
 
@@ -190,11 +244,68 @@ function sendOrderEmail(orderId, deliveryTime, total, itemsList, userEmail) {
         });
 }
 
+// Order Status Simulation
+function updateOrderStatus() {
+    let orders = JSON.parse(localStorage.getItem("foodrushOrders") || "[]");
+    let now = Date.now();
+    let changed = false;
+
+    orders.forEach(function(order) {
+        if (!order.statusTime) order.statusTime = now;
+        let elapsed = now - order.statusTime;
+        let status = order.status;
+
+        if (status === "Order Placed" && elapsed >= 30000) {
+            order.status = "Preparing";
+            changed = true;
+        } else if (status === "Preparing" && elapsed >= 60000) {
+            order.status = "Ready";
+            changed = true;
+        } else if (status === "Ready" && elapsed >= 90000) {
+            order.status = "Out for Delivery";
+            changed = true;
+        } else if (status === "Out for Delivery" && elapsed >= 120000) {
+            order.status = "Delivered";
+            changed = true;
+        }
+    });
+
+    if (changed) {
+        localStorage.setItem("foodrushOrders", JSON.stringify(orders));
+    }
+}
+
 // Initialize cart on page load
 document.addEventListener("DOMContentLoaded", function() {
     loadCart();
     clearSuccessMessage();
     showCart();
+    updateOrderStatus();
+
+    let first50Coupon = document.getElementById("first50-coupon");
+    if (first50Coupon && hasPreviousOrders()) {
+        first50Coupon.style.display = "none";
+    }
+
+    let availableCoupons = getAvailableCoupons();
+    let regularCoupons = document.querySelectorAll(".regular-coupon");
+    regularCoupons.forEach(function(card) {
+        let code = card.getAttribute("data-coupon");
+        if (availableCoupons.includes(code)) {
+            card.style.display = "inline-block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    if (availableCoupons.length === 0) {
+        let noOffers = document.getElementById("no-offers-message");
+        if (noOffers) {
+            noOffers.style.display = "block";
+        }
+    }
+
+    renderAddresses();
 });
 
 function clearCart() {
@@ -204,8 +315,143 @@ function clearCart() {
     showCart();
     updateCartCount();
 }
+
+// Address Management
+function loadAddresses() {
+    return JSON.parse(localStorage.getItem("foodrushAddresses") || "[]");
+}
+
+function saveAddressToStorage(addresses) {
+    localStorage.setItem("foodrushAddresses", JSON.stringify(addresses));
+}
+
+function saveAddress() {
+    let name = document.getElementById("addr-name").value.trim();
+    let phone = document.getElementById("addr-phone").value.trim();
+    let street = document.getElementById("addr-street").value.trim();
+    let city = document.getElementById("addr-city").value.trim();
+    let pincode = document.getElementById("addr-pincode").value.trim();
+
+    if (!name || !phone || !street || !city || !pincode) {
+        alert("Please fill all address fields.");
+        return;
+    }
+
+    let addresses = loadAddresses();
+    addresses.push({ name, phone, street, city, pincode });
+    saveAddressToStorage(addresses);
+
+    hideAddressForm();
+    renderAddresses();
+}
+
+function showAddressForm() {
+    document.getElementById("address-form").style.display = "block";
+    document.getElementById("addr-name").value = "";
+    document.getElementById("addr-phone").value = "";
+    document.getElementById("addr-street").value = "";
+    document.getElementById("addr-city").value = "";
+    document.getElementById("addr-pincode").value = "";
+}
+
+function hideAddressForm() {
+    document.getElementById("address-form").style.display = "none";
+}
+
+function selectAddress(index) {
+    let addresses = loadAddresses();
+    localStorage.setItem("foodrushSelectedAddress", index);
+    renderAddresses();
+}
+
+function renderAddresses() {
+    let addresses = loadAddresses();
+    let selectedIndex = localStorage.getItem("foodrushSelectedAddress");
+    let list = document.getElementById("address-list");
+    let display = document.getElementById("selected-address-display");
+
+    if (!list) return;
+
+    if (addresses.length === 0) {
+        list.innerHTML = "<p style='color:#999; font-size:14px;'>No saved addresses.</p>";
+        if (display) display.style.display = "none";
+        return;
+    }
+
+    let html = "";
+    addresses.forEach(function(addr, index) {
+        let isSelected = (selectedIndex == index);
+        html += "<div style='padding:10px; margin-bottom:8px; border:1px solid " + (isSelected ? "#28a745" : "#ddd") + "; border-radius:6px; cursor:pointer; background-color:" + (isSelected ? "#f0fff4" : "#fff") + ";' onclick='selectAddress(" + index + ")'>";
+        html += "<input type='radio' name='address' " + (isSelected ? "checked" : "") + " style='margin-right:8px;'>";
+        html += "<strong>" + addr.name + "</strong> - " + addr.phone + "<br>";
+        html += "<span style='color:#666; font-size:13px;'>" + addr.street + ", " + addr.city + " - " + addr.pincode + "</span>";
+        html += "</div>";
+    });
+    list.innerHTML = html;
+
+    if (selectedIndex !== null && addresses[selectedIndex]) {
+        let selected = addresses[selectedIndex];
+        if (display) {
+            display.textContent = "Delivering to: " + selected.street + ", " + selected.city + " - " + selected.pincode;
+            display.style.display = "block";
+        }
+    } else if (display) {
+        display.style.display = "none";
+    }
+}
+
+// Reorder
+let itemPrices = {
+    "Pizza": 250,
+    "Burger": 150,
+    "Noodles": 180,
+    "Biryani": 220,
+    "Mexican Food": 200,
+    "Dessert": 120
+};
+
+function reorder(itemsString) {
+    let items = itemsString.split(", ");
+    items.forEach(function(item) {
+        let match = item.match(/^(.+?) \(x(\d+)\)$/);
+        if (match) {
+            let name = match[1];
+            let qty = parseInt(match[2]);
+            let price = itemPrices[name] || 0;
+            for (let i = 0; i < qty; i++) {
+                addToCart(name, price);
+            }
+        }
+    });
+    alert("Items added to cart!");
+}
+
 // Coupon System
 let discountApplied = 0;
+
+function hasPreviousOrders() {
+    let orders = JSON.parse(localStorage.getItem("foodrushOrders") || "[]");
+    return orders.length > 0;
+}
+
+function getAvailableCoupons() {
+    let day = new Date().getDay();
+    let available = [];
+    if (day === 2) available.push("SAVE10");
+    if (day === 6) available.push("SAVE30");
+    if (day === 0) available.push("SAVE50");
+    return available;
+}
+
+function isCouponAvailableToday(code) {
+    if (code === "FIRST50") return true;
+    return getAvailableCoupons().includes(code);
+}
+
+function useCoupon(code) {
+    let input = document.getElementById("coupon-input");
+    input.value = code;
+}
 
 function applyCoupon() {
     let code = document.getElementById("coupon-input").value.trim().toUpperCase();
@@ -214,6 +460,19 @@ function applyCoupon() {
 
     if (!code) {
         message.textContent = "Please enter a coupon code.";
+        message.style.color = "red";
+        return;
+    }
+
+    if (code === "FIRST50" && !hasPreviousOrders()) {
+        discountApplied = total * 0.50;
+        message.textContent = "Coupon applied! You saved ₹" + Math.round(discountApplied);
+        message.style.color = "#28a745";
+        return;
+    }
+
+    if (!isCouponAvailableToday(code)) {
+        message.textContent = "This coupon is not available today.";
         message.style.color = "red";
         return;
     }
@@ -238,7 +497,4 @@ function applyCoupon() {
         message.textContent = "Invalid or minimum order not met.";
         message.style.color = "red";
     }
-
-
-
 }

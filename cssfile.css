@@ -448,6 +448,7 @@ input {
 
 .restaurant-content {
     padding: 20px;
+    position: relative;
 }
 
 .rating {
@@ -1279,4 +1280,234 @@ a.category-card {
     padding: 40px 0;
 
     font-size: 16px;
+}
+
+/*
+   Dark Mode
+*/
+
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .header {
+    background-color: #2d2d2d;
+    border-bottom: 1px solid #444;
+}
+
+body.dark-mode .logo {
+    color: #ffffff;
+}
+
+body.dark-mode .logo span {
+    color: #ff5a36;
+}
+
+body.dark-mode .navbar a {
+    color: #cccccc;
+}
+
+body.dark-mode .navbar a:hover {
+    color: #ff5a36;
+}
+
+body.dark-mode .login-btn {
+    color: #ff5a36;
+    border-color: #ff5a36;
+}
+
+body.dark-mode .login-btn:hover {
+    background-color: #ff5a36;
+    color: #ffffff;
+}
+
+body.dark-mode .hero {
+    background-color: #2a2a2a;
+}
+
+body.dark-mode .hero-description {
+    color: #bbbbbb;
+}
+
+body.dark-mode .search-box {
+    background-color: #333333;
+    border-color: #555555;
+}
+
+body.dark-mode .search-box input {
+    background-color: #333333;
+    color: #e0e0e0;
+    border-color: #555555;
+}
+
+body.dark-mode .section-heading p {
+    color: #ff5a36;
+}
+
+body.dark-mode .category-card {
+    background-color: #2d2d2d;
+    border-color: #444444;
+}
+
+body.dark-mode .category-card h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .category-card p {
+    color: #aaaaaa;
+}
+
+body.dark-mode .category-card button {
+    background-color: #ff5a1f;
+    color: white;
+}
+
+body.dark-mode .restaurants {
+    background-color: #222222;
+}
+
+body.dark-mode .restaurant-card {
+    background-color: #2d2d2d;
+    border-color: #444444;
+}
+
+body.dark-mode .restaurant-content h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .restaurant-content > p {
+    color: #aaaaaa;
+}
+
+body.dark-mode .restaurant-info {
+    color: #bbbbbb;
+    border-top-color: #444444;
+}
+
+body.dark-mode .offer-banner {
+    background-color: #ff5a36;
+    color: #ffffff;
+}
+
+body.dark-mode .about {
+    background-color: #2a2a2a;
+}
+
+body.dark-mode .about-text p {
+    color: #bbbbbb;
+}
+
+body.dark-mode .footer {
+    background-color: #1a1a1a;
+    border-top: 1px solid #333;
+}
+
+body.dark-mode .footer-links a {
+    color: #cccccc;
+}
+
+body.dark-mode .footer-links a:hover {
+    color: #ff5a36;
+}
+
+body.dark-mode .cart-page {
+    background-color: #1a1a1a;
+}
+
+body.dark-mode .cart-box {
+    background-color: #2d2d2d;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .cart-item {
+    border-bottom-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode .cart-item:hover {
+    background-color: #333333;
+}
+
+body.dark-mode .cart-total {
+    color: #ff5a36;
+}
+
+body.dark-mode .order-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+body.dark-mode .order-btn:hover {
+    background-color: #218838;
+}
+
+body.dark-mode #success-message {
+    color: #28a745;
+}
+
+body.dark-mode #cart-items p {
+    color: #999;
+}
+
+body.dark-mode .about-page .about {
+    background-color: #2a2a2a;
+}
+
+body.dark-mode .about-page .about-content {
+    background-color: #2d2d2d;
+    border-color: #444;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .about-page .section-heading h1 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .about-page .about-text p {
+    color: #bbbbbb;
+}
+
+body.dark-mode .primary-btn {
+    background-color: #ff5a36;
+    color: #ffffff;
+}
+
+body.dark-mode .primary-btn:hover {
+    background-color: #e94d2c;
+}
+
+body.dark-mode .menu-btn {
+    color: #ffffff;
+}
+
+body.dark-mode .navbar.active {
+    background-color: #2d2d2d;
+}
+
+body.dark-mode .user-info {
+    color: #e0e0e0;
+}
+
+body.dark-mode .logout-btn {
+    color: #ff5a36;
+    border-color: #ff5a36;
+}
+
+body.dark-mode .logout-btn:hover {
+    background-color: #ff5a36;
+    color: #ffffff;
+}
+
+body.dark-mode .food-circle {
+    background-color: #2d2d2d;
+    box-shadow: 0 10px 30px #444444;
+}
+
+body.dark-mode .offer-icon {
+    color: #ffffff;
+}
+
+body.dark-mode .cart-section {
+    background-color: #1a1a1a;
 }
